@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1c98ddab317f142aa1dd1c4470e282, type: 3}
+  m_Name: basicWall
+  m_EditorClassIdentifier: 
+  title: Basic Wall
+  prefab: {fileID: 1160289327915941436, guid: af61ef0690ae6e04a9b55bdfe34a59c6, type: 3}
+  buildType: 1
+  woodCost: 5
+  metalCost: 0
+  stoneCost: 0
+  seedCost: 0
+  image: {fileID: 0}
+  description: Youre' struggling and need to put up some basic shelter.
