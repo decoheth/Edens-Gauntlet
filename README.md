@@ -26,4 +26,6 @@ Developed for PC by decoheth.
 
 # Changelog
 
-### v0.0.1 - 22/02/2024
+### v0.0.1 - XX/02/2024
+
+This is the first build of Eden's Harvest.

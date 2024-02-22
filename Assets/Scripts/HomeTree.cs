@@ -29,8 +29,7 @@ public class HomeTree : MonoBehaviour
 
     void Death()
     {
-        // Death function
-        Destroy(gameObject);
+        // Game Manager: End Game
         Debug.Log("GAME OVER, Home Tree Destroyed");
     }
 }
