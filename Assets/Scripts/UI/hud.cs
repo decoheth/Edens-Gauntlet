@@ -13,6 +13,7 @@ public class hud : MonoBehaviour
 
     [Header("Combat HUD")]
     [SerializeField] private GameObject combatHUD;
+    public GameObject buildIndicator;
     public TMP_Text healthText;
     public TMP_Text treeHealthText;
     public TMP_Text waveCounterText;
@@ -81,10 +82,10 @@ public class hud : MonoBehaviour
         {
             // Update HUD
             // Resources
-            woodCountText.text = "Wood: " + player.wood;
-            stoneCountText.text = "Stone: " + player.stone;
-            metalCountText.text = "Metal: " + player.metal;
-            seedsCountText.text = "Seeds: " + player.seeds;
+            woodCountText.text = player.wood.ToString();
+            stoneCountText.text = player.stone.ToString();
+            metalCountText.text = player.metal.ToString();
+            seedsCountText.text = player.seeds.ToString();
 
 
         }
