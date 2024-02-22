@@ -3297,7 +3297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1017532880
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3360,11 +3360,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 60}
   m_SizeDelta: {x: 1920, y: 100}
   m_Pivot: {x: 0.5, y: 0}
---- !u!1 &1040133919 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2409599943966844408, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
-  m_PrefabInstance: {fileID: 1296352914213163618}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1057511022
 GameObject:
   m_ObjectHideFlags: 0
@@ -4488,11 +4483,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150428937}
   m_CullTransparentMesh: 1
---- !u!4 &1190117585 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7745954830428306602, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
-  m_PrefabInstance: {fileID: 1296352914213163618}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1194381774
 GameObject:
   m_ObjectHideFlags: 0
@@ -10220,30 +10210,6 @@ PrefabInstance:
     - target: {fileID: 292086966105583587, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1958989599339407931, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
-      propertyPath: hand
-      value: 
-      objectReference: {fileID: 1190117585}
-    - target: {fileID: 1958989599339407931, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
-      propertyPath: camGO
-      value: 
-      objectReference: {fileID: 1040133919}
-    - target: {fileID: 1958989599339407931, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
-      propertyPath: attackDamage
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1958989599339407931, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
-      propertyPath: attackDistance
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1958989599339407931, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
-      propertyPath: attackLayer.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 1983855175550668800, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
-      propertyPath: m_Name
-      value: Hand
       objectReference: {fileID: 0}
     - target: {fileID: 7549636838845798308, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
       propertyPath: m_RootOrder
