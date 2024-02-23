@@ -20,14 +20,6 @@ public class Player : MonoBehaviour
     public int metal;
     public int seeds;
 
-    [Header("Combat")]
-    public bool canAttack = true;
-    public float attackDamage = 5f;
-    public float attackCooldown = .5f;
-    public float attackDistance = 3f;
-
-    public LayerMask attackLayer;
-    public Transform hand;
 
 
     [Header("Camera")]
@@ -38,23 +30,26 @@ public class Player : MonoBehaviour
     public bool inMenu = false;
     
     [Header("Misc")]
-    private GameObject interactable;
+
+    private PlayerCombat playerCombat;
 
     void Awake()
     {
         currentHealth = maxHealth;
-
-        cam = Camera.main;
-
         inMenu = false;
         isCursorHidden = true;
+
+        cam = Camera.main;
+        playerCombat = GetComponent<PlayerCombat>();
+
+
 
     }
 
     void Start()
     {
-        // Load saved HP
-        // Load saved Resources
+        // Load saved data
+
         wood = 0;
         stone = 0;
         metal = 0;
@@ -62,7 +57,6 @@ public class Player : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(inMenu == true && isCursorHidden == true)
@@ -82,20 +76,13 @@ public class Player : MonoBehaviour
 
 
         // Check if not in any menu
-
         if(inMenu == false)
         {
-
-
             // Attack on left click
             if(Input.GetMouseButtonDown(0))
             {
-                if (canAttack)
-                {
-                    Attack();
-                }
+                playerCombat.Attack();
             }
-
 
             // Check if interact key pressed
             if(Input.GetKeyDown(KeyCode.E))
@@ -107,23 +94,15 @@ public class Player : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, playerReach))
                 {
                     if (hit.collider.GetComponent<IInteractable>() != null) 
-                    {
-                        hit.collider.GetComponent<IInteractable>().Interact();
-                        
-                    }
-                        
+                        hit.collider.GetComponent<IInteractable>().Interact(); 
                     else
                         return;
-
                 }
             }
-
-
         }
   
-
+  
     }
-
 
     public void TakeDamage(float amount)
     {
@@ -137,28 +116,5 @@ public class Player : MonoBehaviour
         Debug.Log("GAME OVER, YOU DIED");
     }
 
-    public void Attack()
-    {
-        canAttack = false;
-        //Animator anim = Knife.GetComponent<Animator>();
-        //anim.SetTrigger("Attack");
-        AttackRaycast();
-        StartCoroutine(ResetAttackCooldown());
-    }
-
-    IEnumerator ResetAttackCooldown()
-    {
-        yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
-    }
-
-    void AttackRaycast()
-    {
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, attackDistance, attackLayer))
-        { 
-            if(hit.transform.TryGetComponent<Raider>(out Raider T))
-            { T.TakeDamage(attackDamage); }
-        } 
-    }
 
 }

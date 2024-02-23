@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class Raider : MonoBehaviour
 {
-    float currentHealth;
     public float maxHealth;
+    public float currentHealth;
 
     public float attackDamage = 10;
     public float lookRadius = 20f;
@@ -115,7 +115,6 @@ public class Raider : MonoBehaviour
     {
         canAttack = false;
         // Attack Animation
-        Debug.Log("Attacking!");
         AttackRaycast();
         StartCoroutine(ResetAttackCooldown());
     }
@@ -132,7 +131,7 @@ public class Raider : MonoBehaviour
         if(Physics.Raycast(agent.transform.position, agent.transform.forward, out RaycastHit hit, attackRange))
         { 
             // Attack player
-            if(hit.transform.TryGetComponent<Player>(out Player P))
+            if(hit.transform.root.TryGetComponent<Player>(out Player P))
             { P.TakeDamage(attackDamage); }
   
             // Attack Tree

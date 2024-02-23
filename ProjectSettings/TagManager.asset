@@ -7,6 +7,7 @@ TagManager:
   - HomeTree
   - Interactable
   - Buildables
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - Attackable
+  - 0
   - BuildingSphere
   - 
   - 
