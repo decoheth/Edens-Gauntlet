@@ -106,18 +106,15 @@ public class Player : MonoBehaviour
                 // If ray hits
                 if (Physics.Raycast(ray, out hit, playerReach))
                 {
-                    if (hit.collider.GetComponent<WaveController>() != null) 
+                    if (hit.collider.GetComponent<IInteractable>() != null) 
                     {
-                        hit.collider.GetComponent<WaveController>().Interact();
+                        hit.collider.GetComponent<IInteractable>().Interact();
+                        
                     }
-                    else if (hit.collider.GetComponent<Interactable>() != null)
-                    {
-                        hit.collider.GetComponent<Interactable>().Interact();
-                    }
+                        
                     else
-                    {
                         return;
-                    }
+
                 }
             }
 

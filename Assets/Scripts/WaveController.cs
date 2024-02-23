@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveController : MonoBehaviour
+public class WaveController : MonoBehaviour, IInteractable
 {
-    public float radius = 1.5f;
     GameObject enemyManager;
 
     void Awake ()
@@ -26,12 +25,5 @@ public class WaveController : MonoBehaviour
 
 
     }
-
-    void OnDrawGizmosSelected ()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
-
 
 }
