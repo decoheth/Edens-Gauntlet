@@ -35,31 +35,33 @@ public class Player : MonoBehaviour
 
     private PlayerCombat playerCombat;
     private GameManager gameManager;
+    private SaveManager saveManager;
 
     void Awake()
     {
-        currentHealth = maxHealth;
         inMenu = false;
         isCursorHidden = true;
 
         cam = Camera.main;
         gameManager = GameObject.Find("/Managers/Game Manager/").GetComponent<GameManager>();
+        saveManager = GameObject.Find("/Managers/Save Manager/").GetComponent<SaveManager>();
         
         playerCombat = GetComponent<PlayerCombat>();
-
-
-
 
     }
 
     void Start()
     {
         // Load saved data
+        SaveData data = saveManager.LoadGame();
 
-        wood = 0;
-        stone = 0;
-        metal = 0;
-        seeds = 0;
+        maxHealth = data.savedMaxHealth;
+        currentHealth = data.savedCurrentHealth;
+
+        wood = data.savedWoodCount;
+        stone = data.savedStoneCount;
+        metal = data.savedMetalCount;
+        seeds = data.savedSeedsCount;
 
     }
 

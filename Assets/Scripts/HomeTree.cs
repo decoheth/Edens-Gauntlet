@@ -8,14 +8,26 @@ public class HomeTree : MonoBehaviour
     public float currentHealth;
 
     private GameManager gameManager;
+    private SaveManager saveManager;
 
     void Awake()
     {
         currentHealth = maxHealth;
 
         gameManager = GameObject.Find("/Managers/Game Manager/").GetComponent<GameManager>();
+        saveManager = GameObject.Find("/Managers/Save Manager/").GetComponent<SaveManager>();
         
     }
+
+    void Start()
+    {
+        // Load saved data
+        SaveData data = saveManager.LoadGame();
+
+        maxHealth = data.savedMaxTreeHealth;
+        currentHealth = data.savedCurrentTreeHealth;
+    }
+
 
     public void TakeDamage(float amount)
     {
