@@ -10,9 +10,11 @@ public class Player : MonoBehaviour
 
 
     [Header("Stats")]
+    
     public float maxHealth = 100f;
-    public float playerReach = 1.5f;
     public float currentHealth;
+    public float playerReach = 1.5f;
+
 
     [Header("Inventory")]
     public int wood;
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour
     [Header("Misc")]
 
     private PlayerCombat playerCombat;
+    private GameManager gameManager;
 
     void Awake()
     {
@@ -40,7 +43,10 @@ public class Player : MonoBehaviour
         isCursorHidden = true;
 
         cam = Camera.main;
+        gameManager = GameObject.Find("/Managers/Game Manager/").GetComponent<GameManager>();
+        
         playerCombat = GetComponent<PlayerCombat>();
+
 
 
 
@@ -113,7 +119,7 @@ public class Player : MonoBehaviour
 
     void Death()
     {
-        Debug.Log("GAME OVER, YOU DIED");
+        gameManager.GameOverState();
     }
 
 

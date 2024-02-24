@@ -7,13 +7,14 @@ public class HomeTree : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
 
-    public int level;
-    public int buildRadius;
+    private GameManager gameManager;
 
     void Awake()
     {
         currentHealth = maxHealth;
-        level = 1;
+
+        gameManager = GameObject.Find("/Managers/Game Manager/").GetComponent<GameManager>();
+        
     }
 
     public void TakeDamage(float amount)
@@ -29,7 +30,6 @@ public class HomeTree : MonoBehaviour
 
     void Death()
     {
-        // Game Manager: End Game
-        Debug.Log("GAME OVER, Home Tree Destroyed");
+        gameManager.GameOverState();
     }
 }
