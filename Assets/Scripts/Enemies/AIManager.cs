@@ -21,9 +21,11 @@ public class AIManager : MonoBehaviour
 
         navData = new NavMeshData();
         NavMesh.AddNavMeshData(navData);
-        BakeNavMesh(false);
+    }
 
-        
+    public void Start()
+    {
+        BakeNavMesh(false);
     }
 
     public void BakeNavMesh(bool Async)

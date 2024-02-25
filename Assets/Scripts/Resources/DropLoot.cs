@@ -6,6 +6,7 @@ using UnityEngine;
 public class DropLoot : MonoBehaviour
 {
 
+    private Vector3 dropPos;
     private GameObject pickupParent;
 
     [System.Serializable]
@@ -33,7 +34,9 @@ public class DropLoot : MonoBehaviour
             {
                 int spawnAmount = Random.Range(drop.minAmount, drop.maxAmount + 1);
 
-                GameObject spawnedDrop = Instantiate(drop.dropPrefab, transform.position, Quaternion.identity, pickupParent.transform);
+                dropPos = new Vector3(transform.position.x,transform.position.y+2,transform.position.z);
+
+                GameObject spawnedDrop = Instantiate(drop.dropPrefab, dropPos, Quaternion.identity, pickupParent.transform);
                 // Set Quantity
                 spawnedDrop.GetComponent<resourcePickup>().pickupQuantity = spawnAmount;
 

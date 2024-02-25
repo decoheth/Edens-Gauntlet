@@ -145,15 +145,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DropTable:
   - dropPrefab: {fileID: 2619496685177816160, guid: 3db4c46d63972e549a30a1273d857611, type: 3}
-    dropChance: 60
+    dropChance: 100
     minAmount: 2
     maxAmount: 6
   - dropPrefab: {fileID: 2619496685177816160, guid: a0d7663c2496fad498b1e84554975d61, type: 3}
-    dropChance: 40
+    dropChance: 100
     minAmount: 2
     maxAmount: 3
   - dropPrefab: {fileID: 2619496685177816160, guid: 7a847087953e49d4a8c0a2da4bd3f2c8, type: 3}
-    dropChance: 15
+    dropChance: 100
     minAmount: 1
     maxAmount: 2
   - dropPrefab: {fileID: 2619496685177816160, guid: 307efde618f513940bc08e9142b07f98, type: 3}

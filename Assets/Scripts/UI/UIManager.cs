@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class hud : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     // References
     Player player;
@@ -26,6 +26,10 @@ public class hud : MonoBehaviour
     [SerializeField] public TMP_Text metalCountText;
     [SerializeField] public TMP_Text seedsCountText;
 
+    [Header("Popups")]
+    [SerializeField] public GameObject popupParent;
+    [SerializeField] public GameObject popupPrefab;
+    [SerializeField] public List<ResourcePopupSO> resourcePopup;
 
     [Header("Other")]
     [SerializeField] private bool isCombatHUD;
@@ -95,5 +99,18 @@ public class hud : MonoBehaviour
             buildHUD.SetActive(false);
         }
 
+    }
+
+    public void NewResourcePopup(int type, int amount)
+    {
+        //ResourcePopupSO resourceType = resourcePopup[i];
+
+        Debug.Log("New Popup");
+        var popup = Instantiate (popupPrefab.transform, transform.position , Quaternion.identity, popupParent.transform);
+        var popupTemplate = popup.GetComponent<ResourcePopupTemplate>();
+        popupTemplate.typeText.text = resourcePopup[type].title;
+        popupTemplate.amountText.text = "+" + amount;
+        popupTemplate.image.sprite = resourcePopup[type].image;
+        
     }
 }

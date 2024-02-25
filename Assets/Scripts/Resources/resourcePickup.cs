@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class resourcePickup : MonoBehaviour
 {
-    public enum pickupObject{WOOD,STONE,METAL,SEEDS};
+    
     public pickupObject currentObject;
     public int pickupQuantity;
 
-    GameObject player;
+    private GameObject player;
+    private UIManager uiManager;
 
     void Awake ()
     {
        player = GameObject.FindWithTag("Player");
+       uiManager = GameObject.Find("/Managers/UI Manager/").GetComponent<UIManager>();
 
     }
 
@@ -23,18 +25,23 @@ public class resourcePickup : MonoBehaviour
             if(currentObject == pickupObject.WOOD)
             {
                 player.GetComponent<Player>().wood += pickupQuantity;
+                uiManager.NewResourcePopup(0, pickupQuantity);
+
             }
             else if(currentObject == pickupObject.STONE)
             {
                 player.GetComponent<Player>().stone += pickupQuantity;
+                uiManager.NewResourcePopup(1, pickupQuantity);
             }
             else if(currentObject == pickupObject.METAL)
             {
                 player.GetComponent<Player>().metal += pickupQuantity;
+                uiManager.NewResourcePopup(2, pickupQuantity);
             }
             else if(currentObject == pickupObject.SEEDS)
             {
                 player.GetComponent<Player>().seeds += pickupQuantity;
+                uiManager.NewResourcePopup(3, pickupQuantity);
             }
 
             // Destory after pickup
@@ -43,3 +50,5 @@ public class resourcePickup : MonoBehaviour
 
     }
 }
+
+[System.Serializable] public enum pickupObject{WOOD,STONE,METAL,SEEDS};
