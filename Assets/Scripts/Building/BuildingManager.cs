@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
 using TMPro;
 public class BuildingManager : MonoBehaviour
 {
@@ -44,15 +46,24 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private GameObject buildingUI;
     [SerializeField] private TMP_Text destroyText;
 
+
+
+
+
     Transform structuresParent;
     private Player player;
     private GameObject uiManager;
+    private GameObject enemyManager;
 
 
     void Awake()
     {
         structuresParent = GameObject.Find("Structures").transform;
         uiManager = GameObject.Find("/Managers/UI Manager");
+        enemyManager = GameObject.Find("/Managers/Enemy Manager");
+
+        
+
     }
     private void Update()
     {
@@ -60,6 +71,11 @@ public class BuildingManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.B))
         {
             isBuilding = !isBuilding;
+
+            if(isBuilding == false)
+            {
+                enemyManager.GetComponent<AIManager>().BakeNavMesh(true);
+            }
         }
 
         // Toggle Destroy Mode
@@ -71,6 +87,7 @@ public class BuildingManager : MonoBehaviour
             }
         }
 
+        // Toggle Build Menu
         if(isBuilding || buildingMenu.activeInHierarchy)
         {
             if(Input.GetKeyDown(KeyCode.Tab))
@@ -337,6 +354,7 @@ public class BuildingManager : MonoBehaviour
             {
                 connector.updateConnectors(true);
             }
+
         }
     }
 
@@ -456,6 +474,10 @@ public class BuildingManager : MonoBehaviour
 
         isBuilding = true;
     }
+
+
+
+
 }
 
 [System.Serializable]
