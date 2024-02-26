@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1c98ddab317f142aa1dd1c4470e282, type: 3}
+  m_Name: stoneFloor
+  m_EditorClassIdentifier: 
+  title: Stone Floor
+  prefab: {fileID: 2412108700847731847, guid: c44e96b917b589c4395ea902eaad2ca7, type: 3}
+  buildType: 0
+  woodCost: 0
+  metalCost: 0
+  stoneCost: 5
+  seedCost: 0
+  image: {fileID: 0}
+  description: 

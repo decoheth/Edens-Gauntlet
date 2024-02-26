@@ -31,11 +31,12 @@ public class Player : MonoBehaviour
 
     public bool inMenu = false;
     
-    [Header("Misc")]
+    [Header("Other")]
 
     private PlayerCombat playerCombat;
     private GameManager gameManager;
     private SaveManager saveManager;
+    public GameObject toolHolder;
 
     void Awake()
     {
@@ -62,6 +63,8 @@ public class Player : MonoBehaviour
         stone = data.savedStoneCount;
         metal = data.savedMetalCount;
         seeds = data.savedSeedsCount;
+
+        ToggleCombat(true);
 
     }
 
@@ -122,6 +125,12 @@ public class Player : MonoBehaviour
     void Death()
     {
         gameManager.GameOverState();
+    }
+
+    public void ToggleCombat(bool toggle)
+    {
+        playerCombat.enabled = toggle;
+        toolHolder.SetActive(toggle);
     }
 
 

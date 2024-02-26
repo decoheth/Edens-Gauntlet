@@ -48,8 +48,6 @@ public class BuildingManager : MonoBehaviour
 
 
 
-
-
     Transform structuresParent;
     private Player player;
     private GameObject uiManager;
@@ -61,6 +59,7 @@ public class BuildingManager : MonoBehaviour
         structuresParent = GameObject.Find("Structures").transform;
         uiManager = GameObject.Find("/Managers/UI Manager");
         enemyManager = GameObject.Find("/Managers/Enemy Manager");
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
 
         
 
@@ -72,10 +71,18 @@ public class BuildingManager : MonoBehaviour
         {
             isBuilding = !isBuilding;
 
+            if(isBuilding == true)
+            {
+                //Disable combat
+                player.ToggleCombat(false);
+            }
+
             if(isBuilding == false)
             {
                 enemyManager.GetComponent<AIManager>().BakeNavMesh(true);
+                player.ToggleCombat(true);
             }
+
         }
 
         // Toggle Destroy Mode
@@ -451,7 +458,6 @@ public class BuildingManager : MonoBehaviour
             isDestroying = !isDestroying;
             destroyText.text = isDestroying ? "F: Destroy On" : "F: Destroy Off";
             destroyText.color = isDestroying ? Color.red : Color.black;
-            toggleBuildingMenu(false);
         }
     }
     
