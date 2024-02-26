@@ -11,13 +11,13 @@ public class AIManager : MonoBehaviour
 
     public NavMeshSurface navSurface;
     public GameObject navArea;
-    private NavMeshData navData;
-    private Vector3 navMeshSize;
+    public NavMeshData navData;
+    public Vector3 navMeshSize;
     List<NavMeshBuildSource> navSources = new List<NavMeshBuildSource>();
 
     void Awake()
     {   
-        navMeshSize = navArea.GetComponent<Renderer>().bounds.size;
+        navMeshSize = navArea.GetComponent<Collider>().bounds.size;
 
         navData = new NavMeshData();
         NavMesh.AddNavMeshData(navData);
@@ -30,7 +30,7 @@ public class AIManager : MonoBehaviour
 
     public void BakeNavMesh(bool Async)
     {
-        Bounds navBounds = new Bounds(Vector3.zero, navMeshSize);
+        Bounds navBounds = new Bounds((new Vector3(0,0,-40)), navMeshSize);
 
         List<NavMeshBuildMarkup> markups = new List<NavMeshBuildMarkup>();
 
@@ -59,7 +59,6 @@ public class AIManager : MonoBehaviour
             }
         }
 
-        
 
         if (navSurface.collectObjects == CollectObjects.Children)
         {
