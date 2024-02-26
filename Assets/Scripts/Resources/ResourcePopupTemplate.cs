@@ -15,7 +15,7 @@ public class ResourcePopupTemplate : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Destroy instance");
+        // Fade out
         Destroy(this.gameObject, lifeTime);
     }
 

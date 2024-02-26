@@ -105,7 +105,6 @@ public class UIManager : MonoBehaviour
     {
         //ResourcePopupSO resourceType = resourcePopup[i];
 
-        Debug.Log("New Popup");
         var popup = Instantiate (popupPrefab.transform, transform.position , Quaternion.identity, popupParent.transform);
         var popupTemplate = popup.GetComponent<ResourcePopupTemplate>();
         popupTemplate.typeText.text = resourcePopup[type].title;
