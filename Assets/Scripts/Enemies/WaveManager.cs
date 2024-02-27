@@ -13,6 +13,13 @@ public class WaveManager : MonoBehaviour
     [Header("Enemy Types")]
     public GameObject enemyPrefab;
 
+
+
+    // Managers
+    UIManager uIManager;
+    NavMeshManager navMeshManager;
+
+
     
     [System.Serializable]
     public class WaveContent
@@ -39,7 +46,13 @@ public class WaveManager : MonoBehaviour
 
     public List<GameObject> currentEnemyWave = new List<GameObject>();
 
+    void Awake()
+    {
+        uIManager = GameObject.Find("/Managers/UI Manager").GetComponent<UIManager>();
+        navMeshManager = GetComponent<NavMeshManager>();
 
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +64,6 @@ public class WaveManager : MonoBehaviour
         spawning_z_dim /= 2; 
 
         waveActive = false;
-        //SpawnWave();
     }
 
     // Update is called once per frame
@@ -64,11 +76,14 @@ public class WaveManager : MonoBehaviour
             // Wave ended
             waveActive = false;
             currentWave++;
+            uIManager.UpdateWaveCounter(currentWave);
         }
     }
 
     public void SpawnWave()
     {
+        navMeshManager.BakeNavMesh(false);
+
         waveActive = true;
 
         for(int i = 0; i < waves[currentWave].GetEnemySpawnList().Length; i++)

@@ -79,7 +79,6 @@ public class BuildingManager : MonoBehaviour
 
             if(isBuilding == false)
             {
-                enemyManager.GetComponent<AIManager>().BakeNavMesh(true);
                 player.ToggleCombat(true);
             }
 

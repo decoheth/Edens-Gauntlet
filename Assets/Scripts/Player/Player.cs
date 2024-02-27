@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     [Header("Other")]
 
     private PlayerCombat playerCombat;
+    private UIManager uIManager;
     private GameManager gameManager;
     private SaveManager saveManager;
     public GameObject toolHolder;
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
         cam = Camera.main;
         gameManager = GameObject.Find("/Managers/Game Manager/").GetComponent<GameManager>();
         saveManager = GameObject.Find("/Managers/Save Manager/").GetComponent<SaveManager>();
+        uIManager = GameObject.Find("/Managers/UI Manager").GetComponent<UIManager>();
         
         playerCombat = GetComponent<PlayerCombat>();
 
@@ -65,6 +67,10 @@ public class Player : MonoBehaviour
         seeds = data.savedSeedsCount;
 
         ToggleCombat(true);
+
+        uIManager.SetHealthBar(maxHealth);
+        uIManager.UpdateHealthBar(currentHealth);
+
 
     }
 
@@ -118,6 +124,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
+        uIManager.UpdateHealthBar(currentHealth);
         if(currentHealth <= 0)
         { Death(); }
     }

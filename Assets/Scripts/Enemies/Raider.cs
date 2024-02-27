@@ -29,7 +29,7 @@ public class Raider : MonoBehaviour
         currentHealth = maxHealth;
         
         player = GameObject.FindWithTag("Player").transform;
-        tree = GameObject.FindWithTag("HomeTree").transform.root;
+        tree = GameObject.FindWithTag("HomeTree").transform;
         agent = GetComponent<NavMeshAgent>();
 
         

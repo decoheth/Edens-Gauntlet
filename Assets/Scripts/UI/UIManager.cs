@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -14,7 +15,7 @@ public class UIManager : MonoBehaviour
     [Header("Combat HUD")]
     [SerializeField] private GameObject combatHUD;
     public GameObject buildIndicator;
-    public TMP_Text healthText;
+    public Slider healthBar;
     public TMP_Text treeHealthText;
     public TMP_Text waveCounterText;
 
@@ -47,8 +48,10 @@ public class UIManager : MonoBehaviour
         enemyManager = GameObject.Find("/Managers/Enemy Manager").GetComponent<WaveManager>();
         buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
         
-    isCombatHUD = true;
-    isBuildHUD = false;
+        isCombatHUD = true;
+        isBuildHUD = false;
+
+        float maxHealth = player.maxHealth;
 
     }
 
@@ -73,9 +76,8 @@ public class UIManager : MonoBehaviour
         if(isCombatHUD == true && combatHUD.activeInHierarchy && buildMenu.activeInHierarchy == false)
         {
             // Update HUD
-            healthText.text = "Health: " + player.currentHealth;
             treeHealthText.text = "Tree Health: " + tree.currentHealth;
-            waveCounterText.text = "Wave: " + enemyManager.currentWave;
+            
         }
 
         if(isCombatHUD == false && combatHUD.activeInHierarchy)
@@ -114,5 +116,18 @@ public class UIManager : MonoBehaviour
         popupTemplate.amountText.text = "+" + amount;
         popupTemplate.image.sprite = resourcePopup[type].image;
         
+    }
+    
+    public void UpdateWaveCounter (int wave)
+    {
+        waveCounterText.text = wave.ToString();
+    }
+    public void UpdateHealthBar (float health)
+    {
+        healthBar.value = health;
+    }
+    public void SetHealthBar (float maxHealth)
+    {
+        healthBar.maxValue = maxHealth;
     }
 }
