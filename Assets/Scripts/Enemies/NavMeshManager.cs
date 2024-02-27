@@ -25,7 +25,7 @@ public class NavMeshManager : MonoBehaviour
 
     public void Start()
     {
-        BakeNavMesh(false);
+        //BakeNavMesh(false);
     }
 
     public void BakeNavMesh(bool Async)

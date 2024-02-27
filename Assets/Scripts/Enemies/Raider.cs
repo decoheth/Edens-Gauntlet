@@ -5,8 +5,7 @@ using UnityEngine.AI;
 
 public class Raider : MonoBehaviour
 {
-    public float maxHealth;
-    public float currentHealth;
+
 
     public float attackDamage = 10;
     public float lookRadius = 20f;
@@ -26,13 +25,10 @@ public class Raider : MonoBehaviour
 
     void Awake()
     {
-        currentHealth = maxHealth;
-        
         player = GameObject.FindWithTag("Player").transform;
         tree = GameObject.FindWithTag("HomeTree").transform;
         agent = GetComponent<NavMeshAgent>();
 
-        
         enemyManager = GameObject.Find("/Managers/Enemy Manager");
     }
 
@@ -96,20 +92,6 @@ public class Raider : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
-    public void TakeDamage(float amount)
-    {
-        currentHealth -= amount;
-        if(currentHealth <= 0)
-        { Death(); }
-    }
-
-    void Death()
-    {
-        enemyManager.GetComponent<WaveManager>().currentEnemyWave.Remove(gameObject);
-        Destroy(gameObject);
-        // Drop Loot
-        GetComponent<DropLoot>().dropLoot();
-    }
 
     public void Attack()
     {

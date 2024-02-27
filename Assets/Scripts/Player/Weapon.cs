@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Make generic instead of raider only
-        var enemy = other.gameObject.GetComponent<Raider>();
+        var enemy = other.gameObject.GetComponent<EnemyStats>();
         if (other.tag == "Enemy" && playerCombat.isAttacking)
         {
             // Hit Particle effects
