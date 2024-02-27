@@ -39,6 +39,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        Application.targetFrameRate = 60;
+
+
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         tree = GameObject.FindWithTag("HomeTree").GetComponent<HomeTree>();
         enemyManager = GameObject.Find("/Managers/Enemy Manager").GetComponent<WaveManager>();

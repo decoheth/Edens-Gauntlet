@@ -89,6 +89,7 @@ MonoBehaviour:
   camGO: {fileID: 2409599943966844408}
   isCursorHidden: 0
   inMenu: 0
+  toolHolder: {fileID: 1983855175550668800}
 --- !u!114 &7767992156130636172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,8 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 3817579745043281335}
-  speed: 8
-  jumpHeight: 1.8
+  speed: 20
+  jumpHeight: 2
   gravity: -19.62
   groundCheck: {fileID: 3630924313759824036}
   groundDistance: 0.4
