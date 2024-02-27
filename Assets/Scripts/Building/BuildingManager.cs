@@ -84,13 +84,20 @@ public class BuildingManager : MonoBehaviour
 
         }
 
-        // Toggle Destroy Mode
+        
         if(buildingUI.activeInHierarchy)
         {
+            // Toggle Destroy Mode
             if(Input.GetKeyDown(KeyCode.F))
-            {
                 destoryBuildingToggle();
+            // Exit Build Mode on Escape
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                isBuilding = false;
+                player.ToggleCombat(true);
             }
+                
+    
         }
 
         // Toggle Build Menu
@@ -98,6 +105,8 @@ public class BuildingManager : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Tab))
                 toggleBuildingMenu(!buildingMenu.activeInHierarchy);
+            if(Input.GetKeyDown(KeyCode.Escape))
+                toggleBuildingMenu(false);
         }
 
         if(isBuilding && !isDestroying)
@@ -120,6 +129,7 @@ public class BuildingManager : MonoBehaviour
             if(Input.GetMouseButtonDown(0))
                 destroyBuild();
         }
+
     }
 
     private void previewBuild()
@@ -441,7 +451,7 @@ public class BuildingManager : MonoBehaviour
         Camera.main.GetComponent<MouseLook>().enabled = !active;
 
         Cursor.visible = active;
-        Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;
     }
 
     public void destoryBuildingToggle(bool fromScript = false)
