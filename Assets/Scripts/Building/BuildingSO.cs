@@ -7,6 +7,7 @@ using UnityEngine;
 public class BuildingSO : ScriptableObject
 {
     public string title;
+    public bool isUnlocked = false;
     public GameObject prefab;
     public SelectedBuildType buildType;
     public float woodCost;

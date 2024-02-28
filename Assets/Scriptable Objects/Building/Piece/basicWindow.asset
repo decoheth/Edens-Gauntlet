@@ -19,5 +19,5 @@ MonoBehaviour:
   metalCost: 0
   stoneCost: 0
   seedCost: 0
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: fabdbfb46e03d0d4b9352184f7cb3726, type: 3}
   description: A basic hole with a hole cut out.

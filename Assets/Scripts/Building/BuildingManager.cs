@@ -50,6 +50,9 @@ public class BuildingManager : MonoBehaviour
 
     Transform structuresParent;
     private Player player;
+    private WaveManager waveManager;
+
+    // Managers
     private GameObject uiManager;
     private GameObject enemyManager;
 
@@ -61,27 +64,17 @@ public class BuildingManager : MonoBehaviour
         enemyManager = GameObject.Find("/Managers/Enemy Manager");
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
 
-        
+        waveManager = enemyManager.GetComponent<WaveManager>();
 
     }
     private void Update()
     {
         // Activate Build Mode
-        if(Input.GetKeyDown(KeyCode.B))
+        if(Input.GetKeyDown(KeyCode.B) && waveManager.waveActive == false)
         {
             isBuilding = !isBuilding;
 
-            if(isBuilding == true)
-            {
-                //Disable combat
-                player.ToggleCombat(false);
-            }
-
-            if(isBuilding == false)
-            {
-                player.ToggleCombat(true);
-            }
-
+            player.ToggleCombat(!isBuilding);
         }
 
         
