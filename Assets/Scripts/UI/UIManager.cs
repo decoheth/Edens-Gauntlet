@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public List<ResourcePopupSO> resourcePopup;
 
     [Header("Other")]
+    [SerializeField] private GameObject playerMenu;
     [SerializeField] private bool isCombatHUD;
     [SerializeField] private bool isBuildHUD;
 
@@ -106,12 +107,13 @@ public class UIManager : MonoBehaviour
         }
 
         // Pause Menu
-        if(isCombatHUD == true)
+        if(isCombatHUD && !playerMenu.activeInHierarchy)
         {
-            if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape))
             {
                 TogglePauseMenu(!pauseMenu.activeInHierarchy);
             }
+
         }
 
     }
