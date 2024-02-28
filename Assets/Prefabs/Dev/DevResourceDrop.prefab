@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7451706450771272104}
   - component: {fileID: 3619922662756628909}
   - component: {fileID: 3852421058445843977}
-  - component: {fileID: 8197079712298525878}
+  - component: {fileID: 2954746369097541185}
+  - component: {fileID: 7439994096861396298}
   m_Layer: 0
-  m_Name: WaveControl
+  m_Name: DevResourceDrop
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7451706450771272104
 MeshFilter:
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f0caabc74c152db4cb55b36c150da91f, type: 2}
+  - {fileID: 2100000, guid: f774b5f5bccce7741af94153f1222cf4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +107,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8197079712298525878
+--- !u!114 &2954746369097541185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,6 +116,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 6041173249678209723}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc41177409e7d1b4fb4b1675a809594f, type: 3}
+  m_Script: {fileID: 11500000, guid: 56ac3fc6d3f16144eb9ffb93b20f415e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7439994096861396298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6041173249678209723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db0b09546ab09264cb03d2e571f6d86b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DropTable:
+  - dropPrefab: {fileID: 2619496685177816160, guid: 3db4c46d63972e549a30a1273d857611, type: 3}
+    dropChance: 100
+    minAmount: 250
+    maxAmount: 250
+  - dropPrefab: {fileID: 2619496685177816160, guid: a0d7663c2496fad498b1e84554975d61, type: 3}
+    dropChance: 100
+    minAmount: 250
+    maxAmount: 250
+  - dropPrefab: {fileID: 2619496685177816160, guid: 7a847087953e49d4a8c0a2da4bd3f2c8, type: 3}
+    dropChance: 100
+    minAmount: 250
+    maxAmount: 250
+  - dropPrefab: {fileID: 2619496685177816160, guid: 307efde618f513940bc08e9142b07f98, type: 3}
+    dropChance: 100
+    minAmount: 250
+    maxAmount: 250

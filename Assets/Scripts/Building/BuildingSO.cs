@@ -10,10 +10,10 @@ public class BuildingSO : ScriptableObject
     public bool isUnlocked = false;
     public GameObject prefab;
     public SelectedBuildType buildType;
-    public float woodCost;
-    public float metalCost;
-    public float stoneCost;
-    public float seedCost;
+    public int woodCost;
+    public int metalCost;
+    public int stoneCost;
+    public int seedCost;
     public Sprite image;
     public string description;
 

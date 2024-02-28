@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: woodFloor
   m_EditorClassIdentifier: 
   title: Wood Floor
+  isUnlocked: 1
   prefab: {fileID: 2412108700847731847, guid: d9c02ddb91960ff438957ca00951acaa, type: 3}
   buildType: 0
   woodCost: 5

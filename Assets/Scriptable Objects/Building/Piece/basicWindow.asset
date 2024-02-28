@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: basicWindow
   m_EditorClassIdentifier: 
   title: Basic Window
+  isUnlocked: 1
   prefab: {fileID: 8258520752853285580, guid: c50f3ce739f4f1f44bd9a9b543bc368a, type: 3}
   buildType: 1
-  woodCost: 5
+  woodCost: 8
   metalCost: 0
   stoneCost: 0
   seedCost: 0

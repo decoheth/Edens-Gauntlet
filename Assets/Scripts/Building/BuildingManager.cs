@@ -47,7 +47,7 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private TMP_Text destroyText;
 
 
-
+    private BuildingSO currentSO; 
     Transform structuresParent;
     private Player player;
     private WaveManager waveManager;
@@ -352,16 +352,21 @@ public class BuildingManager : MonoBehaviour
     {
         if(previewBuildGameobject != null && isPreviewInValidPosition)
         {
-            GameObject newBuild = Instantiate(getCurrentBuild(), previewBuildGameobject.transform.position, previewBuildGameobject.transform.rotation);
-
-            Destroy(previewBuildGameobject);
-            previewBuildGameobject = null;
-
-            //isBuilding = false;
-
-            foreach(Connector connector in newBuild.GetComponentsInChildren<Connector>())
+            if(BuildCost())
             {
-                connector.updateConnectors(true);
+                GameObject newBuild = Instantiate(getCurrentBuild(), previewBuildGameobject.transform.position, previewBuildGameobject.transform.rotation);
+
+                Destroy(previewBuildGameobject);
+                previewBuildGameobject = null;
+
+                foreach(Connector connector in newBuild.GetComponentsInChildren<Connector>())
+                {
+                    connector.updateConnectors(true);
+                }
+            }
+            else
+            {
+                Debug.Log("Not Enough Resources");
             }
 
         }
@@ -484,7 +489,40 @@ public class BuildingManager : MonoBehaviour
     }
 
 
+    bool BuildCost()
+    {
+        switch(currentBuildType)
+        {
+            case SelectedBuildType.FLOOR:
+                currentSO = floorObjects[currentBuildingIndex];
+                break;
+            case SelectedBuildType.WALL:
+                currentSO = wallObjects[currentBuildingIndex];
+                break;
+            case SelectedBuildType.UTILITY:
+                currentSO = utilityObjects[currentBuildingIndex];
+                break;
+            case SelectedBuildType.BUILDING:
+                currentSO = buildingObjects[currentBuildingIndex];
+                break;
+            case SelectedBuildType.PLANT:
+                currentSO = plantObjects[currentBuildingIndex];
+                break;
+        }
 
+        if(player.wood >= currentSO.woodCost && player.stone >= currentSO.stoneCost && player.metal >= currentSO.metalCost && player.seeds >= currentSO.seedCost)
+        {
+            // remove costs
+            player.wood -= currentSO.woodCost;
+            player.stone -= currentSO.stoneCost;
+            player.metal -= currentSO.metalCost;
+            player.seeds -= currentSO.seedCost;
+
+            return true;
+        }
+        else
+            return false;
+    }
 
 }
 

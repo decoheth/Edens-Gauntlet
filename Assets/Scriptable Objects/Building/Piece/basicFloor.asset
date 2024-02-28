@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: basicFloor
   m_EditorClassIdentifier: 
   title: Basic Floor
+  isUnlocked: 1
   prefab: {fileID: 2412108700847731847, guid: 162ae7f010fda3d4daa91ba81610815b, type: 3}
   buildType: 0
   woodCost: 5

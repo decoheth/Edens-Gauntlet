@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: basicWall
   m_EditorClassIdentifier: 
   title: Basic Wall
+  isUnlocked: 1
   prefab: {fileID: 1160289327915941436, guid: af61ef0690ae6e04a9b55bdfe34a59c6, type: 3}
   buildType: 1
-  woodCost: 5
+  woodCost: 8
   metalCost: 0
   stoneCost: 0
   seedCost: 0

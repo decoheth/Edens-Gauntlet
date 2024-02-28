@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveController : MonoBehaviour, IInteractable
+public class DevWaveController : MonoBehaviour, IInteractable
 {
     GameObject enemyManager;
 

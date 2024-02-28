@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: stoneFloor
   m_EditorClassIdentifier: 
   title: Stone Floor
+  isUnlocked: 1
   prefab: {fileID: 2412108700847731847, guid: c44e96b917b589c4395ea902eaad2ca7, type: 3}
   buildType: 0
   woodCost: 0
