@@ -6,12 +6,6 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    // References
-    Player player;
-    HomeTree tree;
-    WaveManager enemyManager;
-    BuildingManager buildingManager;
-
     [Header("Combat HUD")]
     [SerializeField] private GameObject combatHUD;
     public GameObject buildIndicator;
@@ -27,6 +21,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TMP_Text metalCountText;
     [SerializeField] public TMP_Text seedsCountText;
 
+    [Header("Pause Menu")]
+    [SerializeField] private GameObject pauseMenu;
+
     [Header("Popups")]
     [SerializeField] public GameObject popupParent;
     [SerializeField] public GameObject popupPrefab;
@@ -36,14 +33,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] private bool isCombatHUD;
     [SerializeField] private bool isBuildHUD;
 
+    // References
+    Player player;
+    HomeTree tree;
+    WaveManager enemyManager;
+    BuildingManager buildingManager;
+    MouseLook mouseLook;
 
-    // Start is called before the first frame update
     void Awake()
     {
         Application.targetFrameRate = 60;
 
 
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        mouseLook = GameObject.FindWithTag("Player").GetComponentInChildren<MouseLook>();
         tree = GameObject.FindWithTag("HomeTree").GetComponent<HomeTree>();
         enemyManager = GameObject.Find("/Managers/Enemy Manager").GetComponent<WaveManager>();
         buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
@@ -95,13 +98,20 @@ public class UIManager : MonoBehaviour
             stoneCountText.text = player.stone.ToString();
             metalCountText.text = player.metal.ToString();
             seedsCountText.text = player.seeds.ToString();
-
-
         }
 
         if(isBuildHUD == false && buildHUD.activeInHierarchy)
         {
             buildHUD.SetActive(false);
+        }
+
+        // Pause Menu
+        if(isCombatHUD == true)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                TogglePauseMenu(!pauseMenu.activeInHierarchy);
+            }
         }
 
     }
@@ -130,4 +140,12 @@ public class UIManager : MonoBehaviour
     {
         healthBar.maxValue = maxHealth;
     }
+
+    public void TogglePauseMenu(bool paused)
+    {
+        pauseMenu.SetActive(paused);
+        Time.timeScale = paused ? 0f : 1f;
+        mouseLook.cursorHidden = !paused;
+    }
+    
 }
