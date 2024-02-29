@@ -17,6 +17,7 @@ public class WaveManager : MonoBehaviour
 
     // Managers
     UIManager uIManager;
+    BuildingManager buildingManager;
     NavMeshManager navMeshManager;
 
 
@@ -49,6 +50,7 @@ public class WaveManager : MonoBehaviour
     void Awake()
     {
         uIManager = GameObject.Find("/Managers/UI Manager").GetComponent<UIManager>();
+        buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
         navMeshManager = GetComponent<NavMeshManager>();
 
 
@@ -69,14 +71,17 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        // Check if all enemies have been killed
-        if(currentEnemyWave.Count == 0 && waveActive == true)
+        if(waveActive == true)
         {
-            // Wave ended
-            waveActive = false;
-            currentWave++;
-            uIManager.UpdateWaveCounter(currentWave);
+            // Check if all enemies have been killed
+            if(currentEnemyWave.Count == 0 )
+            {
+                // Wave ended
+                waveActive = false;
+                currentWave++;
+                uIManager.UpdateWaveCounter(currentWave);
+                buildingManager.ToggleCanBuild(true);
+            }
         }
     }
 
@@ -85,6 +90,7 @@ public class WaveManager : MonoBehaviour
         navMeshManager.BakeNavMesh(false);
 
         waveActive = true;
+        buildingManager.ToggleCanBuild(false);
 
         for(int i = 0; i < waves[currentWave].GetEnemySpawnList().Length; i++)
         {

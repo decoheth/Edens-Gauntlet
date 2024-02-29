@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
 
     private PlayerCombat playerCombat;
     private UIManager uIManager;
+    private BuildingManager buildingManager;
     private GameManager gameManager;
     private SaveManager saveManager;
     public GameObject toolHolder;
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
         gameManager = GameObject.Find("/Managers/Game Manager/").GetComponent<GameManager>();
         saveManager = GameObject.Find("/Managers/Save Manager/").GetComponent<SaveManager>();
         uIManager = GameObject.Find("/Managers/UI Manager").GetComponent<UIManager>();
+        buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
         
         playerCombat = GetComponent<PlayerCombat>();
 
@@ -140,5 +142,14 @@ public class Player : MonoBehaviour
         toolHolder.SetActive(toggle);
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("BuildRegion"))
+            buildingManager.ToggleCanBuild(true);
+
+        if(other.CompareTag("NoBuildRegion"))
+            buildingManager.ToggleCanBuild(false); 
+
+    }
 
 }

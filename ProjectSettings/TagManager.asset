@@ -8,6 +8,8 @@ TagManager:
   - Interactable
   - Buildables
   - Enemy
+  - BuildRegion
+  - NoBuildRegion
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - BuildRegion
+  - 
   - BuildingSphere
   - 
   - 

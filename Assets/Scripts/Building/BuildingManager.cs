@@ -41,20 +41,25 @@ public class BuildingManager : MonoBehaviour
     private Transform ModelParent = null;
 
     [Header("UI")]
-    
     [SerializeField] private GameObject buildingMenu;
     [SerializeField] private GameObject buildingUI;
     [SerializeField] private TMP_Text destroyText;
 
 
+    [Header("Build Region")]
+    [SerializeField] private GameObject uiBuildIndicator;
+    public bool canBuild;
+
+
     private BuildingSO currentSO; 
     Transform structuresParent;
     private Player player;
-    private WaveManager waveManager;
+    
 
     // Managers
     private GameObject uiManager;
     private GameObject enemyManager;
+    private WaveManager waveManager;
 
 
     void Awake()
@@ -66,11 +71,14 @@ public class BuildingManager : MonoBehaviour
 
         waveManager = enemyManager.GetComponent<WaveManager>();
 
+        canBuild = false;
+        ToggleCanBuild(false);
+
     }
     private void Update()
     {
         // Activate Build Mode
-        if(Input.GetKeyDown(KeyCode.B) && waveManager.waveActive == false)
+        if(Input.GetKeyDown(KeyCode.B) && canBuild)
         {
             isBuilding = !isBuilding;
 
@@ -97,9 +105,9 @@ public class BuildingManager : MonoBehaviour
         if(isBuilding || buildingMenu.activeInHierarchy)
         {
             if(Input.GetKeyDown(KeyCode.Tab))
-                toggleBuildingMenu(!buildingMenu.activeInHierarchy);
+                ToggleBuildingMenu(!buildingMenu.activeInHierarchy);
             if(Input.GetKeyDown(KeyCode.Escape))
-                toggleBuildingMenu(false);
+                ToggleBuildingMenu(false);
         }
 
         if(isBuilding && !isDestroying)
@@ -123,7 +131,16 @@ public class BuildingManager : MonoBehaviour
                 destroyBuild();
         }
 
+        // Build Regions
+        uiBuildIndicator.SetActive(canBuild);
+        if(!canBuild && isBuilding)
+        {
+            isBuilding = !isBuilding;
+        }
+
     }
+
+
 
     private void previewBuild()
     {
@@ -439,7 +456,7 @@ public class BuildingManager : MonoBehaviour
     }
 
 
-    public void toggleBuildingMenu(bool active)
+    public void ToggleBuildingMenu(bool active)
     {
         isBuilding = !active;
 
@@ -483,7 +500,7 @@ public class BuildingManager : MonoBehaviour
     public void startBuildingButton(int buildIndex)
     {
         currentBuildingIndex = buildIndex;
-        toggleBuildingMenu(false);
+        ToggleBuildingMenu(false);
 
         isBuilding = true;
     }
@@ -522,6 +539,20 @@ public class BuildingManager : MonoBehaviour
         }
         else
             return false;
+    }
+
+    // Build Regions
+    public void ToggleCanBuild(bool active)
+    {
+        
+        uiBuildIndicator.SetActive(active);
+        canBuild = active;
+        if(active == false && isBuilding)
+        {
+            isBuilding = false;
+            player.ToggleCombat(true);
+        }
+
     }
 
 }
