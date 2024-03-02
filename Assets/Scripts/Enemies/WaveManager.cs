@@ -11,29 +11,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] GameObject EnemyParent;
 
     [Header("Enemy Types")]
-    public GameObject enemyPrefab;
-
-
-
-    // Managers
-    UIManager uIManager;
-    BuildingManager buildingManager;
-    NavMeshManager navMeshManager;
-
-
-    
-    [System.Serializable]
-    public class WaveContent
-    {
-        
-        [SerializeField][NonReorderable] GameObject[] enemySpawn;
-
-        public GameObject[] GetEnemySpawnList()
-        {
-            return enemySpawn;
-        }
-            
-    }
+    public List<Enemy> Enemies = new List<Enemy>();
 
     [Header("Spawning Zones")]
     [SerializeField] Transform SpawnField;
@@ -41,11 +19,16 @@ public class WaveManager : MonoBehaviour
     float spawning_z_dim;
 
 
-
     [Header("Waves")]
-    [SerializeField][NonReorderable] WaveContent[] waves;
 
     public List<GameObject> currentEnemyWave = new List<GameObject>();
+    //public float scalingModifer;
+
+    // Managers
+    UIManager uIManager;
+    BuildingManager buildingManager;
+    NavMeshManager navMeshManager;
+
 
     void Awake()
     {
@@ -56,7 +39,6 @@ public class WaveManager : MonoBehaviour
 
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         // Get Spawning Field dimensions
@@ -68,7 +50,7 @@ public class WaveManager : MonoBehaviour
         waveActive = false;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if(waveActive == true)
@@ -92,11 +74,16 @@ public class WaveManager : MonoBehaviour
         waveActive = true;
         buildingManager.ToggleCanBuild(false);
 
-        for(int i = 0; i < waves[currentWave].GetEnemySpawnList().Length; i++)
+        int currentWaveCost = 0;
+        var selectedEnemy = Enemies[0];
+
+        int waveMaxCost = 15 + (5*currentWave);
+
+        for(int i = 0; currentWaveCost < waveMaxCost; i++)
         {
-            GameObject newSpawn = Instantiate(waves[currentWave].GetEnemySpawnList()[i], SpawnLocation(), Quaternion.identity, EnemyParent.transform);
-            ///newSpawn.SetParent
+            GameObject newSpawn = Instantiate(selectedEnemy.enemyPrefab, SpawnLocation(), Quaternion.identity, EnemyParent.transform);
             currentEnemyWave.Add(newSpawn);
+            currentWaveCost += selectedEnemy.enemyCost;
         }
     }
 
@@ -112,4 +99,13 @@ public class WaveManager : MonoBehaviour
         SpawnLoc = new Vector3(sp_centre.x + x_rand,1,sp_centre.z + z_rand);
         return SpawnLoc;
     }
+}
+
+
+[System.Serializable]
+public class Enemy
+{
+    public GameObject enemyPrefab;
+    public int enemyCost;
+    public Faction selectedFaction;
 }

@@ -23,10 +23,7 @@ public class NavMeshManager : MonoBehaviour
         NavMesh.AddNavMeshData(navData);
     }
 
-    public void Start()
-    {
-        //BakeNavMesh(false);
-    }
+ 
 
     public void BakeNavMesh(bool Async)
     {

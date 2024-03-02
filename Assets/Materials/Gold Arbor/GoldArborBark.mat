@@ -1,0 +1,272 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GoldArborBark
+  m_Shader: {fileID: 4800000, guid: db832c06de8fcab4cb0f90e8b275786e, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - TransparentDepthPrepass
+  - TransparentDepthPostpass
+  - TransparentBackface
+  - RayTracingPrepass
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseColor:
+        m_Texture: {fileID: 2800000, guid: 805196d1088056e48be6dfe6ad643ef1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseColorMap:
+        m_Texture: {fileID: 2800000, guid: 805196d1088056e48be6dfe6ad643ef1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BentNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 3986dcb25e416fb4a9f9ba80a6a1b119, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 0, y: 0}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ExtraTex:
+        m_Texture: {fileID: 2800000, guid: 8351b595f6799d1438c3bfb0421f0208, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MAOHS:
+        m_Texture: {fileID: 2800000, guid: 8351b595f6799d1438c3bfb0421f0208, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 805196d1088056e48be6dfe6ad643ef1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 3986dcb25e416fb4a9f9ba80a6a1b119, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 3986dcb25e416fb4a9f9ba80a6a1b119, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMapOS:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RGMaskDirt:
+        m_Texture: {fileID: 2800000, guid: e8ba2da5a12f312449c38f0b407e2fac, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SubsurfaceTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ThicknessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Diffusion_Profile: 3.5648174
+    - EFFECT_BILLBOARD: 0
+    - EFFECT_EXTRA_TEX: 1
+    - _ANIM: 0
+    - _AOMax: 1
+    - _AOMin: 0.674
+    - _AORemapMax: 1
+    - _AORemapMin: 0
+    - _AddPrecomputedVelocity: 0
+    - _AlphaClipThreshold: 0.1
+    - _AlphaCutoff: 0
+    - _AlphaCutoffEnable: 1
+    - _AlphaDstBlend: 0
+    - _AlphaSrcBlend: 1
+    - _BillboardKwToggle: 0
+    - _BillboardShadowFade: 0.5
+    - _BlendMode: 0
+    - _ConservativeDepthOffsetEnable: 0
+    - _CullMode: 0
+    - _CullModeForward: 0
+    - _DETAILMODE: 0
+    - _DepthOffsetEnable: 0
+    - _DetailAlbedoScale: 1
+    - _DetailNormalScale: 1
+    - _DetailSmoothnessScale: 1
+    - _DiffusionProfile: 0
+    - _DoubleSidedEnable: 1
+    - _DoubleSidedGIMode: 0
+    - _DoubleSidedNormalMode: 0
+    - _DstBlend: 0
+    - _EnableBlendModePreserveSpecularLighting: 1
+    - _EnableFogOnTransparent: 1
+    - _EnvironmentReflections: 1
+    - _GMaskStrength: 0
+    - _Glossiness: 0
+    - _HeightAmplitude: 0
+    - _HeightCenter: 0.5
+    - _HueVariationKwToggle: 1
+    - _LinkDetailsWithBase: 1
+    - _MASKMAP: 0
+    - _MetalicMax: 1
+    - _MetalicMin: 0
+    - _Metallic: 0
+    - _MetallicRemapMax: 1
+    - _MetallicRemapMin: 0
+    - _NORMALMAPSPACE: 0
+    - _NormalMapKwToggle: 1
+    - _NormalScale: 1
+    - _NormalStrength: 1
+    - _OpaqueCullMode: 2
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _RMaskStrength: 0
+    - _RayTracing: 0
+    - _ReceiveShadows: 1
+    - _ReceivesSSR: 0
+    - _ReceivesSSRTransparent: 0
+    - _RefractionModel: 0
+    - _RenderQueueType: 1
+    - _RequireSplitLighting: 0
+    - _Smoothness: 0
+    - _SmoothnessMax: 0
+    - _SmoothnessMin: 0
+    - _SmoothnessRemapMax: 1
+    - _SmoothnessRemapMin: 0
+    - _SmoothnessViewAngleOffset: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _StencilRef: 0
+    - _StencilRefDepth: 0
+    - _StencilRefDistortionVec: 4
+    - _StencilRefGBuffer: 2
+    - _StencilRefMV: 32
+    - _StencilWriteMask: 6
+    - _StencilWriteMaskDepth: 9
+    - _StencilWriteMaskDistortionVec: 4
+    - _StencilWriteMaskGBuffer: 15
+    - _StencilWriteMaskMV: 41
+    - _SubsurfaceIndirect: 0.25
+    - _SubsurfaceKwToggle: 0
+    - _SubsurfaceScale: 1
+    - _SupportDecals: 0
+    - _SurfaceType: 0
+    - _Thickness: 1
+    - _TransparentBackfaceEnable: 0
+    - _TransparentCullMode: 2
+    - _TransparentDepthPostpassEnable: 0
+    - _TransparentDepthPrepassEnable: 0
+    - _TransparentSortPriority: 0
+    - _TransparentWritingMotionVec: 0
+    - _TransparentZWrite: 0
+    - _Tree12Width: 10
+    - _TreeAO: 1
+    - _TreeAO2: 2.4
+    - _TreeAOBias: 0.1
+    - _TreeAOBias2: 0.35
+    - _TreeDO: 7.5
+    - _TreeDO2: 5
+    - _TreeDOBias: 0
+    - _TreeDOBias2: 0
+    - _TwoSided: 2
+    - _USETREEOCCLUSION: 0
+    - _UseShadowThreshold: 0
+    - _WINDQUALITY: 0
+    - _WindElasticityLvl0: 0.096
+    - _WindElasticityLvl1: 0.06
+    - _WindElasticityLvlB: 0.2
+    - _WindFakeSingleObjectPivot: 0
+    - _WindFlutterElasticity: 0.5
+    - _WindFlutterPeriodScale: 0.823
+    - _WindFlutterPhase: 21.2
+    - _WindFlutterScale: 0.026
+    - _WindQuality: 4
+    - _WindRangeLvl0: 1.5
+    - _WindRangeLvl1: 0.6
+    - _WindRangeLvlB: 0.4
+    - _ZTestDepthEqualForOpaque: 3
+    - _ZTestGBuffer: 3
+    - _ZTestTransparent: 4
+    - _ZWrite: 1
+    m_Colors:
+    - Diffusion_Profile_Asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DiffusionProfile_Asset: {r: 0, g: 0, b: 0, a: 0}
+    - _DoubleSidedConstants: {r: -1, g: -1, b: -1, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionTint: {r: 0, g: 0, b: 0, a: 0}
+    - _GTint: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 0}
+    - _HueVariationColor: {r: 1, g: 0.5, b: 0, a: 0.1}
+    - _PeeledBarkColor: {r: 1, g: 1, b: 1, a: 1}
+    - _PeeledBarkColorAlt: {r: 0.9, g: 0.9, b: 1, a: 1}
+    - _PeeledBarkUVRangeScale: {r: 0, g: 1, b: 2, a: 0}
+    - _RTint: {r: 0.5, g: 0.5, b: 0.5, a: 0}
+    - _SubsurfaceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TextureOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _TextureTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Tint: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
+--- !u!114 &5702987745218839875
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 13
+  hdPluginSubTargetMaterialVersions:
+    m_Keys: []
+    m_Values: 

@@ -89,8 +89,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 5de2adf8832feec44b5a16ef593d86be, type: 2}
     - target: {fileID: 919132149155446097, guid: 00564ac77d340254f97af3dbad306232, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 919132149155446097, guid: 00564ac77d340254f97af3dbad306232, type: 3}
       propertyPath: m_Name
-      value: Model
+      value: HomeTree
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 00564ac77d340254f97af3dbad306232, type: 3}
       propertyPath: m_Layer

@@ -6,6 +6,8 @@ public class EnemyStats : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
+    // public int spawnCost
+    public  Faction selectedFaction;
 
     GameObject enemyManager;
 
@@ -32,3 +34,14 @@ public class EnemyStats : MonoBehaviour
     }
 
 }
+
+[System.Serializable]
+public enum Faction
+{
+    PLAYER,
+    RAIDER,
+    PARAMILITARY,
+    ORGANIC,
+
+}
+
