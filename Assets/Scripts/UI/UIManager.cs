@@ -148,6 +148,11 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(paused);
         Time.timeScale = paused ? 0f : 1f;
         mouseLook.cursorHidden = !paused;
+        if(paused == true)
+        {
+            buildingManager.ToggleBuildingMenu(false);
+            buildingManager.canBuild = false;
+        }
     }
     
 }

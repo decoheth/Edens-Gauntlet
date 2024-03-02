@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 using TMPro;
@@ -48,7 +49,13 @@ public class BuildingManager : MonoBehaviour
 
     [Header("Build Region")]
     [SerializeField] private GameObject uiBuildIndicator;
+    [SerializeField] private GameObject SelectionGrid;
     public bool canBuild;
+
+
+    [Header("Building Menu")]
+    private List<BuildingSO> selectedBuildMenuType = new List<BuildingSO>();
+    public GameObject BuildItemMenuPrefab;
 
 
     private BuildingSO currentSO; 
@@ -72,25 +79,32 @@ public class BuildingManager : MonoBehaviour
         waveManager = enemyManager.GetComponent<WaveManager>();
 
         canBuild = false;
+        isBuilding =false;
         ToggleCanBuild(false);
+        ToggleBuildingMenu(false);
 
     }
     private void Update()
     {
         // Activate Build Mode
-        if(Input.GetKeyDown(KeyCode.B) && canBuild)
+        if(Input.GetKeyDown(KeyCode.B) && canBuild && !buildingMenu.activeInHierarchy)
         {
             isBuilding = !isBuilding;
 
             player.ToggleCombat(!isBuilding);
         }
 
+        if(canBuild == false)
+        {
+            ToggleCanBuild(false);
+            ToggleBuildingMenu(false);
+        }
         
         if(buildingUI.activeInHierarchy)
         {
             // Toggle Destroy Mode
             if(Input.GetKeyDown(KeyCode.F))
-                destoryBuildingToggle();
+                DestoryBuildingToggle();
             // Exit Build Mode on Escape
             if(Input.GetKeyDown(KeyCode.Escape))
             {
@@ -450,7 +464,7 @@ public class BuildingManager : MonoBehaviour
             Destroy(lastHitDestroyTransform.gameObject);
             // TODO: Refund build cost to player
 
-            //destoryBuildingToggle(true);
+            //DestoryBuildingToggle(true);
             lastHitDestroyTransform = null;
         }
     }
@@ -461,6 +475,8 @@ public class BuildingManager : MonoBehaviour
         isBuilding = !active;
 
         buildingMenu.SetActive(active);
+        if(active == true)
+            LoadBuildingMenu(0);
 
         // Disable camera sensitivity
         Camera.main.GetComponent<MouseLook>().enabled = !active;
@@ -469,7 +485,7 @@ public class BuildingManager : MonoBehaviour
         Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;
     }
 
-    public void destoryBuildingToggle(bool fromScript = false)
+    public void DestoryBuildingToggle(bool fromScript = false)
     {
         if (fromScript)
         {
@@ -484,21 +500,11 @@ public class BuildingManager : MonoBehaviour
             destroyText.color = isDestroying ? Color.red : Color.black;
         }
     }
-    
-    public void changeBuildTypeButton(string selectedBuildType)
-    {
-        if(System.Enum.TryParse(selectedBuildType, out SelectedBuildType result))
-        {
-            currentBuildType = result;
-        }
-        else
-        {
-            Debug.Log("Build Type Doesn't Exist");
-        }
-    }
 
-    public void startBuildingButton(int buildIndex)
+
+    public void startBuildingButton(SelectedBuildType buildType, int buildIndex)
     {
+        currentBuildType = buildType;
         currentBuildingIndex = buildIndex;
         ToggleBuildingMenu(false);
 
@@ -551,10 +557,54 @@ public class BuildingManager : MonoBehaviour
         {
             isBuilding = false;
             player.ToggleCombat(true);
-        }
+        }   
 
     }
 
+    public void LoadBuildingMenu (int SelectedBuildMenu)
+    {
+        foreach (Transform child in SelectionGrid.transform) {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        selectedBuildMenuType.Clear();
+
+        switch(SelectedBuildMenu)
+        {
+            case 0:  
+                selectedBuildMenuType.AddRange(floorObjects);
+                break;
+            case 1:  
+                selectedBuildMenuType.AddRange(wallObjects);
+                break;
+            case 2:
+                selectedBuildMenuType.AddRange(plantObjects);
+                break;
+            case 3:
+                selectedBuildMenuType.AddRange(utilityObjects);
+                break;
+            case 4:
+                selectedBuildMenuType.AddRange(buildingObjects);
+                break;
+        }
+
+        if(selectedBuildMenuType.Count > 0)
+        {
+            for (int i = 0; i < selectedBuildMenuType.Count; i++)
+            {
+                var buildMenuItem = Instantiate (BuildItemMenuPrefab, transform.position , Quaternion.identity, SelectionGrid.transform);
+                var buildMenuItemTemplate = buildMenuItem.GetComponent<buildMenuItemTemplate>();
+                buildMenuItemTemplate.ItemTitle.text = selectedBuildMenuType[i].title;
+                buildMenuItemTemplate.ItemImage.sprite = selectedBuildMenuType[i].image;
+                int tmp_i = i;
+                SelectedBuildType tmp_type = selectedBuildMenuType[i].buildType;
+                buildMenuItem.GetComponent<Button>().onClick.AddListener(() => startBuildingButton(tmp_type, tmp_i));
+            }
+
+        }
+        else
+            Debug.Log("This List is Empty");
+    }
 }
 
 [System.Serializable]

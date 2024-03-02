@@ -13,11 +13,13 @@ public class PlayerMenu : MonoBehaviour
     // References
     MouseLook mouseLook;
     UIManager uIManager;
+    BuildingManager buildingManager;
 
     void Awake()
     {
         mouseLook = GameObject.FindWithTag("Player").GetComponentInChildren<MouseLook>();
         uIManager = GetComponent<UIManager>();
+        buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
 
         playerMenu.SetActive(false);
     }
@@ -43,5 +45,7 @@ public class PlayerMenu : MonoBehaviour
         playerMenu.SetActive(active);
         Time.timeScale = active ? 0f : 1f;
         mouseLook.cursorHidden = !active;
+
+
     }
 }
