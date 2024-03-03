@@ -8,7 +8,6 @@ public class UIManager : MonoBehaviour
 {
     [Header("Combat HUD")]
     [SerializeField] private GameObject combatHUD;
-    public GameObject buildIndicator;
     public Slider healthBar;
     public TMP_Text treeHealthText;
     public TMP_Text waveCounterText;
@@ -22,7 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TMP_Text seedsCountText;
 
     [Header("Pause Menu")]
-    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] public GameObject pauseMenu;
 
     [Header("Popups")]
     [SerializeField] public GameObject popupParent;
@@ -36,6 +35,7 @@ public class UIManager : MonoBehaviour
 
     // References
     Player player;
+    PlayerInventory playerInventory;
     HomeTree tree;
     WaveManager enemyManager;
     BuildingManager buildingManager;
@@ -47,6 +47,7 @@ public class UIManager : MonoBehaviour
 
 
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
         mouseLook = GameObject.FindWithTag("Player").GetComponentInChildren<MouseLook>();
         tree = GameObject.FindWithTag("HomeTree").GetComponent<HomeTree>();
         enemyManager = GameObject.Find("/Managers/Enemy Manager").GetComponent<WaveManager>();
@@ -95,10 +96,10 @@ public class UIManager : MonoBehaviour
         {
             // Update HUD
             // Resources
-            woodCountText.text = player.wood.ToString();
-            stoneCountText.text = player.stone.ToString();
-            metalCountText.text = player.metal.ToString();
-            seedsCountText.text = player.seeds.ToString();
+            woodCountText.text = playerInventory.wood.ToString();
+            stoneCountText.text = playerInventory.stone.ToString();
+            metalCountText.text = playerInventory.metal.ToString();
+            seedsCountText.text = playerInventory.seeds.ToString();
         }
 
         if(isBuildHUD == false && buildHUD.activeInHierarchy)

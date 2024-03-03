@@ -16,6 +16,7 @@ public class SaveManager: MonoBehaviour
 
 
     private Player player;
+    private PlayerInventory playerInventory;
     private HomeTree homeTree;
     private WaveManager waveManager;
 
@@ -29,6 +30,8 @@ public class SaveManager: MonoBehaviour
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         homeTree = GameObject.FindWithTag("HomeTree").GetComponent<HomeTree>();
         waveManager = GameObject.Find("/Managers/Enemy Manager").GetComponent<WaveManager>();
+        playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
+
         }   
     }
 
@@ -54,10 +57,10 @@ public class SaveManager: MonoBehaviour
         int wave = waveManager.currentWave;
         float maxTreeHealth = homeTree.maxHealth;
         float currentTreeHealth = homeTree.currentHealth;
-        int woodCount = player.wood;
-        int stoneCount = player.stone;
-        int metalCount = player.metal;
-        int seedsCount = player.seeds;
+        int woodCount = playerInventory.wood;
+        int stoneCount = playerInventory.stone;
+        int metalCount = playerInventory.metal;
+        int seedsCount = playerInventory.seeds;
 
 
 //float health, int wave, int woodCount, int stoneCount, int metalCount, int seedsCount

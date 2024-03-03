@@ -37,7 +37,7 @@ public class BuildingManager : MonoBehaviour
     [Header("Internal State")]
     [SerializeField] public bool isBuilding = false;
     [SerializeField] private int currentBuildingIndex;
-    private GameObject previewBuildGameobject;
+    public GameObject previewBuildGameobject;
     private bool isPreviewInValidPosition = false;
     private Transform ModelParent = null;
 
@@ -61,6 +61,7 @@ public class BuildingManager : MonoBehaviour
     private BuildingSO currentSO; 
     Transform structuresParent;
     private Player player;
+    private PlayerInventory playerInventory;
     
 
     // Managers
@@ -75,11 +76,12 @@ public class BuildingManager : MonoBehaviour
         uiManager = GameObject.Find("/Managers/UI Manager");
         enemyManager = GameObject.Find("/Managers/Enemy Manager");
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
 
         waveManager = enemyManager.GetComponent<WaveManager>();
 
         canBuild = false;
-        isBuilding =false;
+        isBuilding = false;
         ToggleCanBuild(false);
         ToggleBuildingMenu(false);
 
@@ -156,7 +158,7 @@ public class BuildingManager : MonoBehaviour
 
 
 
-    private void previewBuild()
+    public void previewBuild()
     {
         GameObject currentBuild = getCurrentBuild();
         createPreviewPrefab(currentBuild);
@@ -165,7 +167,7 @@ public class BuildingManager : MonoBehaviour
         checkBuildValidity();
     }
 
-    private void createPreviewPrefab(GameObject currentBuild)
+    public void createPreviewPrefab(GameObject currentBuild)
     {
         if(previewBuildGameobject == null)
         {
@@ -533,13 +535,13 @@ public class BuildingManager : MonoBehaviour
                 break;
         }
 
-        if(player.wood >= currentSO.woodCost && player.stone >= currentSO.stoneCost && player.metal >= currentSO.metalCost && player.seeds >= currentSO.seedCost)
+        if(playerInventory.wood >= currentSO.woodCost && playerInventory.stone >= currentSO.stoneCost && playerInventory.metal >= currentSO.metalCost && playerInventory.seeds >= currentSO.seedCost)
         {
             // remove costs
-            player.wood -= currentSO.woodCost;
-            player.stone -= currentSO.stoneCost;
-            player.metal -= currentSO.metalCost;
-            player.seeds -= currentSO.seedCost;
+            playerInventory.wood -= currentSO.woodCost;
+            playerInventory.stone -= currentSO.stoneCost;
+            playerInventory.metal -= currentSO.metalCost;
+            playerInventory.seeds -= currentSO.seedCost;
 
             return true;
         }
@@ -551,13 +553,17 @@ public class BuildingManager : MonoBehaviour
     public void ToggleCanBuild(bool active)
     {
         
-        uiBuildIndicator.SetActive(active);
+        //uiBuildIndicator.SetActive(active);
         canBuild = active;
         if(active == false && isBuilding)
         {
             isBuilding = false;
             player.ToggleCombat(true);
+            Destroy(previewBuildGameobject);
+            previewBuildGameobject = null;
+            
         }   
+
 
     }
 

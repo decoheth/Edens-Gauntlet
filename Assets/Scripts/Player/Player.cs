@@ -16,13 +16,6 @@ public class Player : MonoBehaviour
     public float playerReach = 1.5f;
 
 
-    [Header("Inventory")]
-    public int wood;
-    public int stone;
-    public int metal;
-    public int seeds;
-
-
 
     [Header("Camera")]
     private Camera cam;
@@ -63,10 +56,7 @@ public class Player : MonoBehaviour
         maxHealth = data.savedMaxHealth;
         currentHealth = data.savedCurrentHealth;
 
-        wood = data.savedWoodCount;
-        stone = data.savedStoneCount;
-        metal = data.savedMetalCount;
-        seeds = data.savedSeedsCount;
+
 
         ToggleCombat(true);
 
