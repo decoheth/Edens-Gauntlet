@@ -19,7 +19,6 @@ public class DevWaveController : MonoBehaviour, IInteractable
         }
         else 
         {
-            Debug.Log("Spawning Next Wave");
             enemyManager.GetComponent<WaveManager>().SpawnWave();
         }
 

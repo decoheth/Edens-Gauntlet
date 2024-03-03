@@ -3565,6 +3565,7 @@ MonoBehaviour:
   plantObjects:
   - {fileID: 11400000, guid: ae388bfe7ed53304ca7b0518363a8e95, type: 2}
   - {fileID: 11400000, guid: 850f11c230599c442a629413161b6b47, type: 2}
+  - {fileID: 11400000, guid: 75f150c6df3b2e14daa24c034397cfcb, type: 2}
   currentBuildType: 0
   connectorLayer:
     serializedVersion: 2

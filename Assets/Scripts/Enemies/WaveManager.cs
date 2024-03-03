@@ -70,6 +70,8 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnWave()
     {
+        Debug.Log("Spawning Wave " + currentWave);
+
         navMeshManager.BakeNavMesh();
 
         waveActive = true;
