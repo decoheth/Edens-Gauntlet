@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private PlayerCombat playerCombat;
     private UIManager uIManager;
     private BuildingManager buildingManager;
+    private WaveManager waveManager;
     private GameManager gameManager;
     private SaveManager saveManager;
     public GameObject toolHolder;
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour
         saveManager = GameObject.Find("/Managers/Save Manager/").GetComponent<SaveManager>();
         uIManager = GameObject.Find("/Managers/UI Manager").GetComponent<UIManager>();
         buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
+        waveManager = GameObject.Find("/Managers/Enemy Manager").GetComponent<WaveManager>();
         
         playerCombat = GetComponent<PlayerCombat>();
 
@@ -134,16 +136,19 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("BuildRegion") && buildingManager.canBuild == false)
+        if(waveManager.waveActive == false)
         {
-            buildingManager.ToggleCanBuild(true);
-            Debug.Log("Build Region");
-        }
+            if(other.CompareTag("BuildRegion") && buildingManager.canBuild == false)
+            {
+                buildingManager.ToggleCanBuild(true);
+                Debug.Log("Build Region");
+            }
 
-        if(other.CompareTag("NoBuildRegion") && buildingManager.canBuild == true)
-        {
-            buildingManager.ToggleCanBuild(false); 
-            Debug.Log("No Build Region");
+            if(other.CompareTag("NoBuildRegion") && buildingManager.canBuild == true)
+            {
+                buildingManager.ToggleCanBuild(false); 
+                Debug.Log("No Build Region");
+            }
         }
 
     }

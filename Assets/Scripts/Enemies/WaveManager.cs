@@ -69,10 +69,11 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnWave()
     {
-        navMeshManager.BakeNavMesh(false);
+        navMeshManager.BakeNavMesh();
 
         waveActive = true;
         buildingManager.ToggleCanBuild(false);
+        buildingManager.ToggleBuildingMenu(false);
 
         int currentWaveCost = 0;
         var selectedEnemy = Enemies[0];

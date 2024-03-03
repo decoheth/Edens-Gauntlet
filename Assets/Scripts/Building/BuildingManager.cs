@@ -77,7 +77,6 @@ public class BuildingManager : MonoBehaviour
         enemyManager = GameObject.Find("/Managers/Enemy Manager");
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
-
         waveManager = enemyManager.GetComponent<WaveManager>();
 
         canBuild = false;
@@ -89,7 +88,7 @@ public class BuildingManager : MonoBehaviour
     private void Update()
     {
         // Activate Build Mode
-        if(Input.GetKeyDown(KeyCode.B) && canBuild && !buildingMenu.activeInHierarchy)
+        if(Input.GetKeyDown(KeyCode.B) && canBuild && !buildingMenu.activeInHierarchy && waveManager.waveActive==false)
         {
             isBuilding = !isBuilding;
 
@@ -127,7 +126,7 @@ public class BuildingManager : MonoBehaviour
                 ToggleBuildingMenu(false);
         }
 
-        if(isBuilding && !isDestroying)
+        if(isBuilding && !isDestroying && canBuild)
         {
             previewBuild();
 
@@ -557,7 +556,7 @@ public class BuildingManager : MonoBehaviour
         
         uiBuildIndicator.SetActive(active);
         canBuild = active;
-        if(active == false && isBuilding)
+        if(active == false && isBuilding==true)
         {
             isBuilding = false;
             player.ToggleCombat(true);   

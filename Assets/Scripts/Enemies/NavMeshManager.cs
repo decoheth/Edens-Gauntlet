@@ -21,11 +21,12 @@ public class NavMeshManager : MonoBehaviour
 
         navData = new NavMeshData();
         NavMesh.AddNavMeshData(navData);
-    }
 
+        BakeNavMesh();
+    }
  
 
-    public void BakeNavMesh(bool Async)
+    public void BakeNavMesh()
     {
         Bounds navBounds = new Bounds((new Vector3(0,0,-40)), navMeshSize);
 
@@ -68,17 +69,9 @@ public class NavMeshManager : MonoBehaviour
 
         navSources.RemoveAll(source => source.component != null && source.component.gameObject.GetComponent<NavMeshAgent>() != null);
 
-        if (Async)
-        {
-            NavMeshBuilder.UpdateNavMeshDataAsync(navData, navSurface.GetBuildSettings(), navSources, navBounds);
-        }
-        else
-        {
-            NavMeshBuilder.UpdateNavMeshData(navData, navSurface.GetBuildSettings(), navSources, navBounds);
-        }
+        NavMeshBuilder.UpdateNavMeshData(navData, navSurface.GetBuildSettings(), navSources, navBounds);
+
         Debug.Log("Navmesh Updated");
     }
-
-
 
 }
