@@ -134,11 +134,17 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("BuildRegion"))
+        if(other.CompareTag("BuildRegion") && buildingManager.canBuild == false)
+        {
             buildingManager.ToggleCanBuild(true);
+            Debug.Log("Build Region");
+        }
 
-        if(other.CompareTag("NoBuildRegion"))
+        if(other.CompareTag("NoBuildRegion") && buildingManager.canBuild == true)
+        {
             buildingManager.ToggleCanBuild(false); 
+            Debug.Log("No Build Region");
+        }
 
     }
 

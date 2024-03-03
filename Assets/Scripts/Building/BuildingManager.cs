@@ -37,7 +37,7 @@ public class BuildingManager : MonoBehaviour
     [Header("Internal State")]
     [SerializeField] public bool isBuilding = false;
     [SerializeField] private int currentBuildingIndex;
-    public GameObject previewBuildGameobject;
+    private GameObject previewBuildGameobject;
     private bool isPreviewInValidPosition = false;
     private Transform ModelParent = null;
 
@@ -100,6 +100,7 @@ public class BuildingManager : MonoBehaviour
         {
             ToggleCanBuild(false);
             ToggleBuildingMenu(false);
+            uiBuildIndicator.SetActive(false);
         }
         
         if(buildingUI.activeInHierarchy)
@@ -147,11 +148,12 @@ public class BuildingManager : MonoBehaviour
                 destroyBuild();
         }
 
-        // Build Regions
-        uiBuildIndicator.SetActive(canBuild);
+        
         if(!canBuild && isBuilding)
         {
             isBuilding = !isBuilding;
+            Destroy(previewBuildGameobject);
+            previewBuildGameobject = null;
         }
 
     }
@@ -553,15 +555,12 @@ public class BuildingManager : MonoBehaviour
     public void ToggleCanBuild(bool active)
     {
         
-        //uiBuildIndicator.SetActive(active);
+        uiBuildIndicator.SetActive(active);
         canBuild = active;
         if(active == false && isBuilding)
         {
             isBuilding = false;
-            player.ToggleCombat(true);
-            Destroy(previewBuildGameobject);
-            previewBuildGameobject = null;
-            
+            player.ToggleCombat(true);   
         }   
 
 
