@@ -61,7 +61,8 @@ public class WaveManager : MonoBehaviour
                 // Wave ended
                 waveActive = false;
                 currentWave++;
-                uIManager.UpdateWaveCounter(currentWave);
+                uIManager.UpdateWaveCounter(currentWave,waveActive);
+                
                 buildingManager.ToggleCanBuild(true);
             }
         }
@@ -74,11 +75,13 @@ public class WaveManager : MonoBehaviour
         waveActive = true;
         buildingManager.ToggleCanBuild(false);
         buildingManager.ToggleBuildingMenu(false);
+        uIManager.UpdateWaveCounter(currentWave,waveActive);
 
-        int currentWaveCost = 0;
+        int currentWaveCost = 0; 
         var selectedEnemy = Enemies[0];
 
-        int waveMaxCost = 15 + (5*currentWave);
+        // Wave Formula
+        int waveMaxCost = 20 + (5*currentWave);
 
         for(int i = 0; currentWaveCost < waveMaxCost; i++)
         {

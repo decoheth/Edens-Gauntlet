@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Slider healthBar;
     public TMP_Text treeHealthText;
     public TMP_Text waveCounterText;
+    public Image waveCounterImage;
 
     [Header("Build HUD")]
     [SerializeField] private GameObject buildHUD;
@@ -131,9 +132,13 @@ public class UIManager : MonoBehaviour
         
     }
     
-    public void UpdateWaveCounter (int wave)
+    public void UpdateWaveCounter (int wave, bool waveActive)
     {
         waveCounterText.text = wave.ToString();
+        if(waveActive)
+            waveCounterImage.color = new Color32(255,0,0,255);
+        else
+            waveCounterImage.color = new Color32(0,0,0,255);
     }
     public void UpdateHealthBar (float health)
     {
