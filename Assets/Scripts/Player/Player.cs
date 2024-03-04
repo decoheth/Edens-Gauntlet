@@ -123,6 +123,14 @@ public class Player : MonoBehaviour
         { Death(); }
     }
 
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
+        uIManager.UpdateHealthBar(currentHealth);
+        if(currentHealth >= maxHealth)
+        { currentHealth = maxHealth; }
+    }
+
     void Death()
     {
         gameManager.GameOverState();

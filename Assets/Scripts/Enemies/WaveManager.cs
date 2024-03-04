@@ -29,12 +29,17 @@ public class WaveManager : MonoBehaviour
     BuildingManager buildingManager;
     NavMeshManager navMeshManager;
 
+    Player player;
+    HomeTree homeTree;
+
 
     void Awake()
     {
         uIManager = GameObject.Find("/Managers/UI Manager").GetComponent<UIManager>();
         buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
         navMeshManager = GetComponent<NavMeshManager>();
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        homeTree = GameObject.FindWithTag("HomeTree").GetComponent<HomeTree>();
 
 
     }
@@ -59,11 +64,7 @@ public class WaveManager : MonoBehaviour
             if(currentEnemyWave.Count == 0 )
             {
                 // Wave ended
-                waveActive = false;
-                currentWave++;
-                uIManager.UpdateWaveCounter(currentWave,waveActive);
-                
-                buildingManager.ToggleCanBuild(true);
+                WaveFinish();
             }
         }
     }
@@ -92,6 +93,21 @@ public class WaveManager : MonoBehaviour
             currentWaveCost += selectedEnemy.enemyCost;
         }
     }
+
+    public void WaveFinish()
+    {
+        waveActive = false;
+        currentWave++;
+        uIManager.UpdateWaveCounter(currentWave,waveActive);
+        
+        buildingManager.ToggleCanBuild(true);
+
+        // Heal Player
+        player.Heal(1000f);
+        // Heal Tree percentage
+        homeTree.Heal(homeTree.maxHealth * 75);
+    }
+    
 
     public Vector3 SpawnLocation()
     {

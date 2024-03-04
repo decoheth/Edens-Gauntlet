@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Plant_SeedShooter : MonoBehaviour
+public class Plant_Mortar : MonoBehaviour
 {
     [Header("Attack")]
     public float attackDamage = 5f;
-    public float attackRange= 15f;
+    public GameObject mortarShellPrefab;
+    public float attackRange= 60f;
+    public float minimumRange= 10f;
     public bool canAttack;
-    public float attackCooldown = .5f;
-    public float rotationSpeed = 10f;
+    public float attackCooldown = 3f;
+    public float rotationSpeed = 5f;
 
     //Managers
     WaveManager waveManager;
@@ -26,7 +27,7 @@ public class Plant_SeedShooter : MonoBehaviour
         canAttack = true;
     }
 
-    void FixedUpdate ()
+    void Update ()
     {
         // Distance from agent to enemy
 
@@ -36,7 +37,7 @@ public class Plant_SeedShooter : MonoBehaviour
             float distance_target = Vector3.Distance(closestEnemy.position, transform.position);
             
             // If enemy comes into the attack range
-            if (distance_target <= attackRange)
+            if (distance_target <= attackRange && distance_target > minimumRange) 
             {
                 FaceTarget(closestEnemy);
 
@@ -68,7 +69,6 @@ public class Plant_SeedShooter : MonoBehaviour
     {
         canAttack = false;
         // Attack Animation
-        AttackRaycast();
         StartCoroutine(ResetAttackCooldown());
     }
 
@@ -78,17 +78,6 @@ public class Plant_SeedShooter : MonoBehaviour
         canAttack = true;
     }
 
-    void AttackRaycast()
-    {
-
-        if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange))
-        { 
-            if(hit.transform.TryGetComponent<EnemyStats>(out EnemyStats T))
-            { 
-            T.TakeDamage(attackDamage); 
-            }
-        } 
-    }
 
     Transform GetClosestEnemy(List<GameObject> enemies)
     {

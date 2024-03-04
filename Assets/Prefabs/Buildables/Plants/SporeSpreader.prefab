@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 6821576441007423310}
   - component: {fileID: 6913260284698432548}
   - component: {fileID: 8140552151604547235}
+  - component: {fileID: 1736843364919377797}
   m_Layer: 0
   m_Name: SporeSpreader
   m_TagString: Buildables
@@ -177,3 +178,19 @@ MonoBehaviour:
   attackActive: 0
   attackDuration: 6
   attackCooldown: 40
+--- !u!208 &1736843364919377797
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3310059869579434125}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

@@ -335,10 +335,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HomeTree
       objectReference: {fileID: 0}
-    - target: {fileID: 4630575643700934545, guid: 32d4798fcd549b5489b770e1b0818f05, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5406796404765945131, guid: 32d4798fcd549b5489b770e1b0818f05, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1568,7 +1564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8434030560185212533, guid: a57aba1b592f82d4c9947ed4ba891acc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 82
+      value: 102.8
       objectReference: {fileID: 0}
     - target: {fileID: 8434030560185212533, guid: a57aba1b592f82d4c9947ed4ba891acc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5149,7 +5145,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 907000352}
-  - component: {fileID: 907000351}
   m_Layer: 0
   m_Name: DevObjects
   m_TagString: Untagged
@@ -5157,25 +5152,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &907000351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907000350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 0
-  m_Area: 0
-  m_OverrideGenerateLinks: 0
-  m_GenerateLinks: 0
-  m_IgnoreFromBuild: 1
-  m_ApplyToChildren: 1
-  m_AffectedAgents: ffffffff
 --- !u!4 &907000352
 Transform:
   m_ObjectHideFlags: 0
@@ -8928,7 +8904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f82b46672760641a93993dbea59329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWave: 0
+  currentWave: 3
   waveActive: 0
   EnemyParent: {fileID: 1670824077}
   Enemies:

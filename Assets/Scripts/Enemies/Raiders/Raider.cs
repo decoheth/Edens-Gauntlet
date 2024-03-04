@@ -45,19 +45,18 @@ public class Raider : MonoBehaviour
         float distance_tree = Vector3.Distance(tree.position, transform.position);
 
         // By default, move towards the home tree, then attack if in radius of home tree
-        if (distance_player >= lookRadius)
+        if (distance_player > lookRadius)
         {
             agent.SetDestination(tree.position);
 
-            if (distance_tree <= agent.stoppingDistance)
+            if (distance_tree <= agent.stoppingDistance+6)
             {
+                agent.ResetPath();
                 // Face target
                 FaceTarget(tree);
                 // Attack
-                if (canAttack)
-                {
-                    Attack();
-                }
+                if(canAttack)
+                    DestroyTree();
             }
         }
 
@@ -100,6 +99,13 @@ public class Raider : MonoBehaviour
         AttackRaycast();
         StartCoroutine(ResetAttackCooldown());
     }
+    public void DestroyTree()
+    {
+        canAttack = false;
+        // Attack Animation
+        tree.GetComponent<HomeTree>().TakeDamage(attackDamage);
+        StartCoroutine(ResetAttackCooldown());
+    }
 
     IEnumerator ResetAttackCooldown()
     {
@@ -115,12 +121,7 @@ public class Raider : MonoBehaviour
             // Attack player
             if(hit.transform.root.TryGetComponent<Player>(out Player P))
             { P.TakeDamage(attackDamage); }
-  
-            // Attack Tree
-            else if(hit.transform.root.TryGetComponent<HomeTree>(out HomeTree T)) 
-            { 
-                T.TakeDamage(attackDamage);    
-            }
+
             else
             {
                 Debug.Log("No Target Found");

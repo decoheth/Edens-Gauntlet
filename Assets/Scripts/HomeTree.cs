@@ -40,6 +40,15 @@ public class HomeTree : MonoBehaviour
         { Death(); }
     }
 
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
+        //uIManager.UpdateTreeHealthBar(currentHealth);
+        if(currentHealth >= maxHealth)
+        { currentHealth = maxHealth; }
+    }
+
+
     void Death()
     {
         gameManager.GameOverState();
