@@ -154,11 +154,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 5
   mortarShellPrefab: {fileID: 3960674361243107411, guid: 0f226418527688641836efbd00f72f4b, type: 3}
-  attackRange: 60
-  minimumRange: 10
+  spawnPoint: {fileID: 8159363720439887117}
+  attackRange: 80
+  minimumRange: 0
   canAttack: 0
   attackCooldown: 3
   rotationSpeed: 5
+  launchAngle: 60
+  projectileSpeed: 20
 --- !u!1 &8159363720439887117
 GameObject:
   m_ObjectHideFlags: 0
