@@ -33,5 +33,11 @@ public class MenuUI : MonoBehaviour
         path = Application.persistentDataPath + "/savaData.json";
     }
 
+    public void ExitGame ()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false; // Unity Editor Only
+    }
+    
 
 }

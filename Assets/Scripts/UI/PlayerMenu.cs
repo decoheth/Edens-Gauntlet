@@ -9,15 +9,15 @@ public class PlayerMenu : MonoBehaviour
     [SerializeField] private GameObject playerMenu;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject combatHud;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerCombat playerCombat;
 
     // References
-    MouseLook mouseLook;
     UIManager uIManager;
     BuildingManager buildingManager;
 
     void Awake()
     {
-        mouseLook = GameObject.FindWithTag("Player").GetComponentInChildren<MouseLook>();
         uIManager = GetComponent<UIManager>();
         buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
 
@@ -43,8 +43,14 @@ public class PlayerMenu : MonoBehaviour
     public void TogglePlayerMenu(bool active)
     {
         playerMenu.SetActive(active);
+        playerMovement.canMove = !active;
+        playerCombat.canAttack = !active;
+            
+        Cursor.visible = active;
+        Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;
+
         Time.timeScale = active ? 0f : 1f;
-        mouseLook.cursorHidden = !active;
+        
 
 
     }

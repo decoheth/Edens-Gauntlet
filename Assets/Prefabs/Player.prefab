@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7549636838845798308}
   - component: {fileID: 3817579745043281335}
   - component: {fileID: 1958989599339407931}
-  - component: {fileID: 7767992156130636172}
+  - component: {fileID: 712506966372843303}
   - component: {fileID: 2948703229400306269}
+  - component: {fileID: 4561884158951175299}
   - component: {fileID: 7384726955327296417}
   - component: {fileID: 1550029215496456599}
   - component: {fileID: 3982051784864135153}
@@ -37,7 +38,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3728678673846689741}
-  - {fileID: 3630924313759824036}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,15 +82,8 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   playerReach: 1.5
-  wood: 0
-  stone: 0
-  metal: 0
-  seeds: 0
-  camGO: {fileID: 2409599943966844408}
-  isCursorHidden: 0
-  inMenu: 0
   toolHolder: {fileID: 1983855175550668800}
---- !u!114 &7767992156130636172
+--- !u!114 &712506966372843303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,15 +111,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e04560ab978ec848baa3ad00611f1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 3817579745043281335}
-  speed: 20
-  jumpHeight: 2
-  gravity: -19.62
-  groundCheck: {fileID: 3630924313759824036}
-  groundDistance: 0.4
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
+  playerCamera: {fileID: 4148617611730826579}
+  walkSpeed: 10
+  runSpeed: 15
+  jumpPower: 9
+  gravity: 19.62
+  mouseSensitivity: 400
+  canMove: 1
+--- !u!114 &4561884158951175299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292086966105583587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a6f8cd3962c31d41a0be075a8fa1adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wood: 0
+  stone: 0
+  metal: 0
+  seeds: 0
 --- !u!33 &7384726955327296417
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -262,7 +269,6 @@ GameObject:
   - component: {fileID: 3728678673846689741}
   - component: {fileID: 4148617611730826579}
   - component: {fileID: 1456051625604190401}
-  - component: {fileID: 8368763073898746164}
   - component: {fileID: 4735958329333492520}
   m_Layer: 0
   m_Name: Main Camera
@@ -346,21 +352,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2409599943966844408}
   m_Enabled: 1
---- !u!114 &8368763073898746164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2409599943966844408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bbab5a77298784bbc281740e616cf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 800
-  playerBody: {fileID: 7549636838845798308}
-  cursorHidden: 0
 --- !u!114 &4735958329333492520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +370,7 @@ MonoBehaviour:
     m_Bits: 16
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 1
+  antialiasingMode: 2
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
@@ -416,42 +407,11 @@ MonoBehaviour:
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
   m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!1 &7949949494603787901
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3630924313759824036}
-  m_Layer: 0
-  m_Name: GroundCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3630924313759824036
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7949949494603787901}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7549636838845798308}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1743189059263570430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -554,8 +514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2574cb939b5a3254da3d2cb062ca1e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  playerCombat: {fileID: 7767992156130636172}
+  damage: 50
+  playerCombat: {fileID: 712506966372843303}
 --- !u!95 &4051060665982852850
 Animator:
   serializedVersion: 5

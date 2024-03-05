@@ -19,10 +19,6 @@ public class Player : MonoBehaviour
 
     [Header("Camera")]
     private Camera cam;
-    public GameObject camGO;
-    public bool isCursorHidden;
-
-    public bool inMenu = false;
     
     [Header("Other")]
 
@@ -36,9 +32,6 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        inMenu = false;
-        isCursorHidden = true;
-
         cam = Camera.main;
         gameManager = GameObject.Find("/Managers/Game Manager/").GetComponent<GameManager>();
         saveManager = GameObject.Find("/Managers/Save Manager/").GetComponent<SaveManager>();
@@ -70,47 +63,29 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(inMenu == true && isCursorHidden == true)
+
+        // Attack on left click
+        if(Input.GetMouseButtonDown(0) && playerCombat.enabled)
         {
-            // Show Cursor
-            camGO.GetComponent<MouseLook>().cursorHidden = false;
-            // Update bool
-            isCursorHidden = false;
-        }
-        else if (inMenu == false && isCursorHidden == false)
-        {
-            // Hide Cursor
-            camGO.GetComponent<MouseLook>().cursorHidden = true;
-            // Update bool
-            isCursorHidden = true;
+            playerCombat.Attack();
         }
 
-
-        // Check if not in any menu
-        if(inMenu == false)
+        // Check if interact key pressed
+        if(Input.GetKeyDown(KeyCode.E))
         {
-            // Attack on left click
-            if(Input.GetMouseButtonDown(0))
-            {
-                playerCombat.Attack();
-            }
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-            // Check if interact key pressed
-            if(Input.GetKeyDown(KeyCode.E))
+            // If ray hits
+            if (Physics.Raycast(ray, out hit, playerReach))
             {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                // If ray hits
-                if (Physics.Raycast(ray, out hit, playerReach))
-                {
-                    if (hit.collider.GetComponent<IInteractable>() != null) 
-                        hit.collider.GetComponent<IInteractable>().Interact(); 
-                    else
-                        return;
-                }
+                if (hit.collider.GetComponent<IInteractable>() != null) 
+                    hit.collider.GetComponent<IInteractable>().Interact(); 
+                else
+                    return;
             }
         }
+        
   
   
     }

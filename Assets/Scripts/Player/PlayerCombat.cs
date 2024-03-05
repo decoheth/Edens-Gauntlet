@@ -10,6 +10,10 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private GameObject shovel;
 
 
+    void Start()
+    {
+        canAttack = true;
+    }
 
     public void Attack()
     {

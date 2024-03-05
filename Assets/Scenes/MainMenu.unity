@@ -981,27 +981,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5580833665592753072, guid: 6cbb3a590e3fcd14e97c8fe5ba425804, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5580833665592753072, guid: 6cbb3a590e3fcd14e97c8fe5ba425804, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5580833665592753072, guid: 6cbb3a590e3fcd14e97c8fe5ba425804, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1483979572}
+      objectReference: {fileID: 704132683}
+    - target: {fileID: 5580833665592753072, guid: 6cbb3a590e3fcd14e97c8fe5ba425804, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5580833665592753072, guid: 6cbb3a590e3fcd14e97c8fe5ba425804, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
+      value: ExitGame
       objectReference: {fileID: 0}
     - target: {fileID: 5580833665592753072, guid: 6cbb3a590e3fcd14e97c8fe5ba425804, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SplashScene, Assembly-CSharp
+      value: MenuUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5580833665592753072, guid: 6cbb3a590e3fcd14e97c8fe5ba425804, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580833665592753072, guid: 6cbb3a590e3fcd14e97c8fe5ba425804, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7413815279756794746, guid: 6cbb3a590e3fcd14e97c8fe5ba425804, type: 3}
       propertyPath: m_Name
@@ -1017,17 +1025,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1737020662498615785, guid: 6cbb3a590e3fcd14e97c8fe5ba425804, type: 3}
   m_PrefabInstance: {fileID: 1483979570}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1483979572 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8757997564685364239, guid: 6cbb3a590e3fcd14e97c8fe5ba425804, type: 3}
-  m_PrefabInstance: {fileID: 1483979570}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea4af01d7c30c1d4f8ded340e798c4f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1800113033
 PrefabInstance:
   m_ObjectHideFlags: 0

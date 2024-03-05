@@ -69,6 +69,9 @@ public class BuildingManager : MonoBehaviour
     private GameObject enemyManager;
     private WaveManager waveManager;
 
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerCombat playerCombat;
+
 
     void Awake()
     {
@@ -81,8 +84,8 @@ public class BuildingManager : MonoBehaviour
 
         canBuild = false;
         isBuilding = false;
-        ToggleCanBuild(false);
-        ToggleBuildingMenu(false);
+        //ToggleCanBuild(false);
+        //ToggleBuildingMenu(false);
 
     }
     private void Update()
@@ -97,8 +100,8 @@ public class BuildingManager : MonoBehaviour
 
         if(canBuild == false)
         {
-            ToggleCanBuild(false);
-            ToggleBuildingMenu(false);
+            //ToggleCanBuild(false);
+            //ToggleBuildingMenu(false);
             uiBuildIndicator.SetActive(false);
         }
         
@@ -477,12 +480,13 @@ public class BuildingManager : MonoBehaviour
     {
         isBuilding = !active;
 
+        playerMovement.canMove = !active;
+        playerCombat.canAttack = !active;
+
         buildingMenu.SetActive(active);
         if(active == true)
             LoadBuildingMenu(0);
 
-        // Disable camera sensitivity
-        Camera.main.GetComponent<MouseLook>().enabled = !active;
 
         Cursor.visible = active;
         Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;

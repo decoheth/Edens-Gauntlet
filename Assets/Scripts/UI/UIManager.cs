@@ -24,6 +24,9 @@ public class UIManager : MonoBehaviour
     [Header("Pause Menu")]
     [SerializeField] public GameObject pauseMenu;
 
+    [Header("Game Over Menu")]
+    [SerializeField] public GameObject gameOverMenu;
+
     [Header("Popups")]
     [SerializeField] public GameObject popupParent;
     [SerializeField] public GameObject popupPrefab;
@@ -33,6 +36,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject playerMenu;
     [SerializeField] private bool isCombatHUD;
     [SerializeField] private bool isBuildHUD;
+    [SerializeField] public bool isDead;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private PlayerCombat playerCombat;
 
     // References
     Player player;
@@ -40,24 +46,27 @@ public class UIManager : MonoBehaviour
     HomeTree tree;
     WaveManager enemyManager;
     BuildingManager buildingManager;
-    MouseLook mouseLook;
+
 
     void Awake()
     {
-        Application.targetFrameRate = 60;
-
-
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
-        mouseLook = GameObject.FindWithTag("Player").GetComponentInChildren<MouseLook>();
         tree = GameObject.FindWithTag("HomeTree").GetComponent<HomeTree>();
         enemyManager = GameObject.Find("/Managers/Enemy Manager").GetComponent<WaveManager>();
         buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
         
         isCombatHUD = true;
         isBuildHUD = false;
+        isDead = false;
+        gameOverMenu.SetActive(false);
+        playerMenu.SetActive(false);
+        pauseMenu.SetActive(false);
+        GameOverMenu(false);
 
         float maxHealth = player.maxHealth;
+
+        
 
     }
 
@@ -79,7 +88,7 @@ public class UIManager : MonoBehaviour
 
 
         // Combat HUD
-        if(isCombatHUD == true && combatHUD.activeInHierarchy && buildMenu.activeInHierarchy == false)
+        if(isCombatHUD == true && combatHUD.activeInHierarchy && buildMenu.activeInHierarchy == false && !isDead)
         {
             // Update HUD
             treeHealthText.text = "Tree Health: " + tree.currentHealth;
@@ -93,7 +102,7 @@ public class UIManager : MonoBehaviour
 
         // Build HUD
 
-        if(isBuildHUD == true && buildHUD.activeInHierarchy)
+        if(isBuildHUD == true && buildHUD.activeInHierarchy && !isDead)
         {
             // Update HUD
             // Resources
@@ -109,12 +118,12 @@ public class UIManager : MonoBehaviour
         }
 
         // Pause Menu
-        if(isCombatHUD && !playerMenu.activeInHierarchy)
+        if(isCombatHUD && !playerMenu.activeInHierarchy && !isDead)
         {
-        if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                TogglePauseMenu(!pauseMenu.activeInHierarchy);
-            }
+            if(Input.GetKeyDown(KeyCode.Escape))
+                {
+                    TogglePauseMenu(!pauseMenu.activeInHierarchy);
+                }
 
         }
 
@@ -122,8 +131,6 @@ public class UIManager : MonoBehaviour
 
     public void NewResourcePopup(int type, int amount)
     {
-        //ResourcePopupSO resourceType = resourcePopup[i];
-
         var popup = Instantiate (popupPrefab.transform, transform.position , Quaternion.identity, popupParent.transform);
         var popupTemplate = popup.GetComponent<ResourcePopupTemplate>();
         popupTemplate.typeText.text = resourcePopup[type].title;
@@ -152,13 +159,34 @@ public class UIManager : MonoBehaviour
     public void TogglePauseMenu(bool paused)
     {
         pauseMenu.SetActive(paused);
+
+        playerMovement.canMove = !paused;
+        playerCombat.canAttack = !paused;
+
+        Cursor.visible = paused;
+        Cursor.lockState = paused ? CursorLockMode.Confined : CursorLockMode.Locked;
+
         Time.timeScale = paused ? 0f : 1f;
-        mouseLook.cursorHidden = !paused;
+        
         if(paused == true)
         {
-            buildingManager.ToggleBuildingMenu(false);
             buildingManager.canBuild = false;
         }
+    }
+
+
+    public void GameOverMenu(bool active)
+    {
+        gameOverMenu.SetActive(active);
+        isDead = active;
+
+        playerMovement.canMove = !active;
+        playerCombat.canAttack = !active;
+
+        Cursor.visible = active;
+        Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;
+
+        Time.timeScale = active ? 0f : 1f;
     }
     
 }
