@@ -36,13 +36,13 @@ public class PlayerCombat : MonoBehaviour
     {
         if(canAttack)
         {
-            if(Time.time - lastComboEnd > 0.1f && comboCounter < combo.Count)
+            if(Time.time - lastComboEnd > 0.01f && comboCounter < combo.Count)
             {
 
 
                 CancelInvoke("EndCombo");
 
-                if(Time.time - lastClickedTime >= 0.4f)
+                if(Time.time - lastClickedTime >= 0.5f)
                 {
                     anim.runtimeAnimatorController = combo[comboCounter].animatorOV;
                     anim.Play("Attack", 0, 0);
@@ -69,7 +69,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f && anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
-            Invoke("EndCombo",1);
+            Invoke("EndCombo",0.8f);
             // 1 second buffer to start next input
         }
     }
