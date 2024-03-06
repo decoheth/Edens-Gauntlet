@@ -64,11 +64,7 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        // Attack on left click
-        if(Input.GetMouseButtonDown(0) && playerCombat.enabled)
-        {
-            playerCombat.Attack();
-        }
+
 
         // Check if interact key pressed
         if(Input.GetKeyDown(KeyCode.E))

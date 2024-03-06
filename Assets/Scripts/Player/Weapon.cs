@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
     {
         // Make generic instead of raider only
         var enemy = other.gameObject.GetComponent<EnemyStats>();
-        if (other.tag == "Enemy" && playerCombat.isAttacking)
+        if (other.tag == "Enemy")
         {
             // Hit Particle effects
             // Enemy play hit animation

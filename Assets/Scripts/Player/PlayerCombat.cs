@@ -5,45 +5,79 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public bool canAttack = true;
-    public bool isAttacking = false;
-    public float attackCooldown = .5f;
-    [SerializeField] private GameObject shovel;
 
+    [SerializeField] private Weapon weapon;
+
+    // Combo
+    Animator anim;
+    public List<AttackSO> combo;
+    float lastClickedTime;
+    float lastComboEnd;
+    int comboCounter;
 
     void Start()
     {
         canAttack = true;
+        anim = GetComponent<Animator>();
+        comboCounter = 0;
+    }
+
+    void Update()
+    {
+        if(Input.GetButtonDown("Fire1"))
+        {
+            Attack();
+        }
+        ExitAttack();
+
     }
 
     public void Attack()
     {
         if(canAttack)
         {
-            ShovelAttack();
+            if(Time.time - lastComboEnd > 0.1f && comboCounter < combo.Count)
+            {
+
+
+                CancelInvoke("EndCombo");
+
+                if(Time.time - lastClickedTime >= 0.4f)
+                {
+                    anim.runtimeAnimatorController = combo[comboCounter].animatorOV;
+                    anim.Play("Attack", 0, 0);
+                    weapon.damage = combo[comboCounter].damage;
+                    // Play sound from SO
+                    comboCounter++;
+                    lastClickedTime = Time.time;
+
+                    if(comboCounter > combo.Count)
+                    {
+                        comboCounter = 0;
+                    }
+                }
+
+                
+            }
+
         }
-
-    }
-
-    IEnumerator ResetAttackCooldown()
-    {
-        yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
-    }
-
-    IEnumerator ResetAttackingBool()
-    {
-        yield return new WaitForSeconds(.6f);
-        isAttacking = false;
-    }
-
-    public void ShovelAttack()
-    {
-        canAttack = false;
-        isAttacking = true;
-        Animator anim = shovel.GetComponent<Animator>();
-        anim.SetTrigger("Attack");
-        StartCoroutine(ResetAttackCooldown());
-        StartCoroutine(ResetAttackingBool());
+        
         
     }
+
+    void ExitAttack()
+    {
+        if(anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f && anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        {
+            Invoke("EndCombo",1);
+            // 1 second buffer to start next input
+        }
+    }
+
+    void EndCombo()
+    {
+        comboCounter = 0;
+        lastComboEnd = Time.time;
+    }
+    
 }

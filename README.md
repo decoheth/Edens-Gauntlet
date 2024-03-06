@@ -1,7 +1,7 @@
 # Eden's Gauntlet
 
 
-Welcome to Eden's Gauntlet, a unique first-person game that combines survival with tower-defense based gameplay.
+Welcome to Eden's Gauntlet, a first-person game that combines melee combat with tower-defense based gameplay.
 
 You are thrust into a post-apocalyptic world where nature has taken a dark turn. In this gripping adventure, you assume the role of a skilled gardener, wielding the power of the flora to fend off relentless enemies and establish your sanctuary in a desolate landscape.
 
