@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
+
 
 public class Weapon : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class Weapon : MonoBehaviour
 
     CapsuleCollider triggerBox;
     public PlayerCombat playerCombat;
+    public VisualEffect bloodSplatter;
 
     public void Start()
     {
@@ -20,8 +23,10 @@ public class Weapon : MonoBehaviour
         var enemy = other.gameObject.GetComponent<EnemyStats>();
         if (other.tag == "Enemy")
         {
-            // Hit Particle effects
             // Enemy play hit animation
+            var vfx = Instantiate(bloodSplatter, transform.position, Quaternion.identity);
+            vfx.Play();
+            Destroy(vfx, 0.5f);
             enemy.TakeDamage(damage);
         }
     }
