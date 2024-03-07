@@ -6,52 +6,50 @@ using TMPro;
 
 public class PlayerMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject playerMenu;
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject combatHud;
-    [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private PlayerCombat playerCombat;
+    [Header("Stats")]
+    [SerializeField] private GameObject statsTab;
+    [SerializeField] private PlayerInventory playerInventory;
+    [SerializeField] public TMP_Text playerHealthText;
+    [SerializeField] public TMP_Text treeHealthText;
+    [SerializeField] public TMP_Text woodCountText;
+    [SerializeField] public TMP_Text stoneCountText;
+    [SerializeField] public TMP_Text metalCountText;
+    [SerializeField] public TMP_Text seedsCountText;
 
-    // References
-    UIManager uIManager;
-    BuildingManager buildingManager;
+    [Header("Perks")]
+    [SerializeField] private GameObject perksTab;
+
+
+    [Header("Database")]
+    [SerializeField] private GameObject databaseTab;
+    
+
+    Player player;
+
 
     void Awake()
     {
-        uIManager = GetComponent<UIManager>();
-        buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
 
-        playerMenu.SetActive(false);
+
+        statsTab.SetActive(true);
+        perksTab.SetActive(false);
+        databaseTab.SetActive(false);
     }
 
     void Update()
     {
-        // Check if Tab press
-        if(Input.GetKeyDown(KeyCode.Tab) && !pauseMenu.activeInHierarchy && combatHud.activeInHierarchy)
+        if(statsTab.activeInHierarchy)
         {
-            TogglePlayerMenu(!playerMenu.activeInHierarchy);
+            woodCountText.text = playerInventory.wood.ToString();
+            stoneCountText.text = playerInventory.stone.ToString();
+            metalCountText.text = playerInventory.metal.ToString();
+            seedsCountText.text = playerInventory.seeds.ToString();
+
+            playerHealthText.text = (player.currentHealth + "/" + player.maxHealth);
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape) && playerMenu.activeInHierarchy)
-        {
-            TogglePlayerMenu(false);  
-        }
-
-        // If menu active, update values
     }
 
-    public void TogglePlayerMenu(bool active)
-    {
-        playerMenu.SetActive(active);
-        playerMovement.canMove = !active;
-        playerCombat.canAttack = !active;
-            
-        Cursor.visible = active;
-        Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;
 
-        Time.timeScale = active ? 0f : 1f;
-        
-
-
-    }
 }

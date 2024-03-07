@@ -127,6 +127,18 @@ public class UIManager : MonoBehaviour
 
         }
 
+
+        // Player Menu
+        if(Input.GetKeyDown(KeyCode.Tab) && !pauseMenu.activeInHierarchy && isCombatHUD)
+        {
+            TogglePlayerMenu(!playerMenu.activeInHierarchy);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape) && playerMenu.activeInHierarchy)
+        {
+            TogglePlayerMenu(false);  
+        }
+
     }
 
     public void NewResourcePopup(int type, int amount)
@@ -187,6 +199,21 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;
 
         Time.timeScale = active ? 0f : 1f;
+    }
+
+        public void TogglePlayerMenu(bool active)
+    {
+        playerMenu.SetActive(active);
+        playerMovement.canMove = !active;
+        playerCombat.canAttack = !active;
+            
+        Cursor.visible = active;
+        Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;
+
+        Time.timeScale = active ? 0f : 1f;
+        
+
+
     }
     
 }
