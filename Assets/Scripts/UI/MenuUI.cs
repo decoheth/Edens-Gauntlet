@@ -13,11 +13,17 @@ public class MenuUI : MonoBehaviour
     void Awake()
     {
         SetPaths();
+
+    
     }
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+
+        Time.timeScale = 1f;
+
 
         // Search for Saved Game 
         // If not found then disable continue

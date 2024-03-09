@@ -8,14 +8,13 @@ public class Raider : MonoBehaviour
 
 
     public float attackDamage = 10;
+    [SerializeField] private EnemyMeleeWeapon weapon;
     public float lookRadius = 20f;
-    public float attackRange= 2.5f;
     public bool canAttack;
     public float attackCooldown = 1f;
 
-    public GameObject lootDrop;
 
-
+    Animator anim;
 
     Transform player;
     Transform tree;
@@ -35,6 +34,8 @@ public class Raider : MonoBehaviour
     void Start()
     {
         canAttack = true;
+        weapon.damage = attackDamage;
+        anim = GetComponent<Animator>();
     }
 
 
@@ -88,17 +89,21 @@ public class Raider : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
-        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
 
     public void Attack()
     {
         canAttack = false;
+
         // Attack Animation
-        AttackRaycast();
+        anim.SetTrigger("Attack");
+
+
         StartCoroutine(ResetAttackCooldown());
     }
+
+
     public void DestroyTree()
     {
         canAttack = false;
@@ -111,22 +116,6 @@ public class Raider : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
-    }
-
-    void AttackRaycast()
-    {
-
-        if(Physics.Raycast(agent.transform.position, agent.transform.forward, out RaycastHit hit, attackRange))
-        { 
-            // Attack player
-            if(hit.transform.root.TryGetComponent<Player>(out Player P))
-            { P.TakeDamage(attackDamage); }
-
-            else
-            {
-                Debug.Log("No Target Found");
-            }
-        } 
     }
 
 }

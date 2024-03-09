@@ -395,7 +395,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 2
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0
@@ -606,6 +606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   playerCombat: {fileID: 712506966372843303}
+  bloodSplatter: {fileID: 3956453126388193487, guid: 5bcff16914096434386405987e7f67ea, type: 3}
 --- !u!136 &6564953920222369124
 CapsuleCollider:
   m_ObjectHideFlags: 0

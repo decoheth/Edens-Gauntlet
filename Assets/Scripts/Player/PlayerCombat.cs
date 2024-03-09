@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public bool canAttack = true;
+    public bool canAttack;
+    public bool canBlock;
+    public bool isAttacking;
+    public bool isBlocking;
+
+    public float blockCooldown = 1f;
 
     [SerializeField] private Weapon weapon;
 
@@ -18,6 +23,9 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         canAttack = true;
+        canBlock = true;
+        isAttacking = false;
+        isBlocking = false;
         anim = GetComponent<Animator>();
         comboCounter = 0;
     }
@@ -27,6 +35,10 @@ public class PlayerCombat : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
         {
             Attack();
+        }
+        if(Input.GetButtonDown("Fire2"))
+        {
+            Block();
         }
         ExitAttack();
 
@@ -44,6 +56,7 @@ public class PlayerCombat : MonoBehaviour
 
                 if(Time.time - lastClickedTime >= 0.5f)
                 {
+                    isAttacking = true;
                     anim.runtimeAnimatorController = combo[comboCounter].animatorOV;
                     anim.Play("Attack", 0, 0);
                     weapon.damage = combo[comboCounter].damage;
@@ -77,7 +90,33 @@ public class PlayerCombat : MonoBehaviour
     void EndCombo()
     {
         comboCounter = 0;
+        isAttacking = false;
         lastComboEnd = Time.time;
     }
-    
+
+    public void Block()
+    {
+        if(canBlock)
+        {
+            canBlock = false;
+            Invoke("EndCombo",0f);
+            isBlocking = true;
+            anim.SetTrigger("Blocking");
+            StartCoroutine(ResetBlockCooldown());
+        }
+
+
+    }
+
+    IEnumerator ResetBlockCooldown()
+    {
+        yield return new WaitForSeconds(blockCooldown);
+        canBlock = true;
+    }
+
+
+    public void ResetBlockBool()
+    {
+        isBlocking = false;
+    }
 }
