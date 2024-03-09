@@ -24,7 +24,15 @@ public class GameManager : MonoBehaviour
         buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
         playerCombat = GameObject.FindWithTag("Player").GetComponent<PlayerCombat>();
         playerGO = GameObject.FindWithTag("Player");
-        
+    }
+
+    void Start()
+    {
+        ResetPlayerPosition();
+    }
+    
+    public void ResetPlayerPosition()
+    {
         playerGO.transform.position = respawnPoint.position;
     }
 

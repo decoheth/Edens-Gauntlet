@@ -9149,18 +9149,22 @@ PrefabInstance:
     - target: {fileID: 5580833665592753072, guid: 93abc858c93f45a4ba3051d3ed0902eb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 407111570}
+      objectReference: {fileID: 407111572}
     - target: {fileID: 5580833665592753072, guid: 93abc858c93f45a4ba3051d3ed0902eb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadScene
       objectReference: {fileID: 0}
     - target: {fileID: 5580833665592753072, guid: 93abc858c93f45a4ba3051d3ed0902eb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: 
+      value: ResetPlayerPosition
       objectReference: {fileID: 0}
     - target: {fileID: 5580833665592753072, guid: 93abc858c93f45a4ba3051d3ed0902eb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SplashScene, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580833665592753072, guid: 93abc858c93f45a4ba3051d3ed0902eb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5580833665592753072, guid: 93abc858c93f45a4ba3051d3ed0902eb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -9172,7 +9176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5580833665592753072, guid: 93abc858c93f45a4ba3051d3ed0902eb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7413815279756794746, guid: 93abc858c93f45a4ba3051d3ed0902eb, type: 3}
       propertyPath: m_Name
@@ -13540,6 +13544,7 @@ MonoBehaviour:
   _renderTreesWithNatureRenderer: 1
   _renderDetailsWithNatureRenderer: 1
   _optimizePatchSize: 1
+  _format: 202200
 --- !u!1 &1411804537
 GameObject:
   m_ObjectHideFlags: 0
@@ -19527,10 +19532,6 @@ PrefabInstance:
     - target: {fileID: 292086966105583587, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 712506966372843303, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
-      propertyPath: blockCooldown
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7549636838845798308, guid: 0b7973cd3fcc53e44a496089a8c96c8f, type: 3}
       propertyPath: m_RootOrder

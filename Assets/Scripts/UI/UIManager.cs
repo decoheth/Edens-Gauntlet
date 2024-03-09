@@ -174,6 +174,7 @@ public class UIManager : MonoBehaviour
 
         playerMovement.canMove = !paused;
         playerCombat.canAttack = !paused;
+        playerCombat.canBlock = !paused;
 
         Cursor.visible = paused;
         Cursor.lockState = paused ? CursorLockMode.Confined : CursorLockMode.Locked;
@@ -194,6 +195,7 @@ public class UIManager : MonoBehaviour
 
         playerMovement.canMove = !active;
         playerCombat.canAttack = !active;
+        playerCombat.canBlock = !active;
 
         Cursor.visible = active;
         Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;
@@ -206,6 +208,7 @@ public class UIManager : MonoBehaviour
         playerMenu.SetActive(active);
         playerMovement.canMove = !active;
         playerCombat.canAttack = !active;
+        playerCombat.canBlock = !active;
             
         Cursor.visible = active;
         Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;

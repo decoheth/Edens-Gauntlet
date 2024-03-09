@@ -73,9 +73,4 @@ crashlytics-build.properties
 
 # Imported Assets and Packages
 /Art/
-/Assets/Fantasy Skybox FREE/
-/Assets/TerrainSampleAssets/
-/Assets/WorldMaterialsFree/
-/Assets/CreaturePub/
-/Assets/Visual Design Cafe/
-/Assets/6000FantasyIcons/
+/Assets/Imported Assets/

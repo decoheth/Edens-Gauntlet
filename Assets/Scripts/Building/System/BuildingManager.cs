@@ -88,6 +88,8 @@ public class BuildingManager : MonoBehaviour
         //ToggleBuildingMenu(false);
 
     }
+
+    #region Update Function, checking inputs
     private void Update()
     {
         // Activate Build Mode
@@ -160,8 +162,9 @@ public class BuildingManager : MonoBehaviour
 
     }
 
+    #endregion
 
-
+    #region Previews
     public void previewBuild()
     {
         GameObject currentBuild = getCurrentBuild();
@@ -290,6 +293,64 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
+    private void previewifyModel(Transform modelParent, Material previewMaterial = null)
+    {
+        if(previewMaterial != null)
+        {
+            foreach(MeshRenderer meshRenderer in modelParent.GetComponentsInChildren<MeshRenderer>())
+            {
+                meshRenderer.material = previewMaterial;
+            }
+        }
+        else
+        {
+            foreach(Collider modelColliders in modelParent.GetComponentsInChildren<Collider>())
+            {
+                modelColliders.enabled = false;
+            }
+        }
+    }
+
+
+    private void previewDestroy()
+    {
+        
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.root.CompareTag("Buildables"))
+            {
+                if(!lastHitDestroyTransform)
+                {
+                    lastHitDestroyTransform = hit.transform.root;
+
+                    LastHitMaterials.Clear();
+                    foreach(MeshRenderer lastHitMeshRenderers in lastHitDestroyTransform.GetComponentsInChildren<MeshRenderer>())
+                    {
+                        LastHitMaterials.Add(lastHitMeshRenderers.material);
+                    }
+
+                    previewifyModel(lastHitDestroyTransform.GetChild(0), previewMaterialInvalid);
+                }
+
+                else if (hit.transform.root != lastHitDestroyTransform)
+                {
+                    resetLastHitDestroyTransform();
+                }
+            }
+
+            else if (lastHitDestroyTransform)
+            {
+                resetLastHitDestroyTransform();
+            }
+            
+        }
+    }
+    #endregion
+
+    #region Build Connectors
+
     private Transform findSnapConnector (Transform snapConnector, Transform previewConnectorParent)
     {
         ConnectorPosition OppositeConnectorTag = getOppositePosition(snapConnector.GetComponent<Connector>());
@@ -348,23 +409,9 @@ public class BuildingManager : MonoBehaviour
 
     }
 
-    private void previewifyModel(Transform modelParent, Material previewMaterial = null)
-    {
-        if(previewMaterial != null)
-        {
-            foreach(MeshRenderer meshRenderer in modelParent.GetComponentsInChildren<MeshRenderer>())
-            {
-                meshRenderer.material = previewMaterial;
-            }
-        }
-        else
-        {
-            foreach(Collider modelColliders in modelParent.GetComponentsInChildren<Collider>())
-            {
-                modelColliders.enabled = false;
-            }
-        }
-    }
+    #endregion
+
+
 
     private GameObject getCurrentBuild()
     {
@@ -409,41 +456,7 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    private void previewDestroy()
-    {
-        
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform.root.CompareTag("Buildables"))
-            {
-                if(!lastHitDestroyTransform)
-                {
-                    lastHitDestroyTransform = hit.transform.root;
 
-                    LastHitMaterials.Clear();
-                    foreach(MeshRenderer lastHitMeshRenderers in lastHitDestroyTransform.GetComponentsInChildren<MeshRenderer>())
-                    {
-                        LastHitMaterials.Add(lastHitMeshRenderers.material);
-                    }
-
-                    previewifyModel(lastHitDestroyTransform.GetChild(0), previewMaterialInvalid);
-                }
-
-                else if (hit.transform.root != lastHitDestroyTransform)
-                {
-                    resetLastHitDestroyTransform();
-                }
-            }
-
-            else if (lastHitDestroyTransform)
-            {
-                resetLastHitDestroyTransform();
-            }
-            
-        }
-    }
 
     private void resetLastHitDestroyTransform()
     {
@@ -475,6 +488,7 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
+    #region Menus
 
     public void ToggleBuildingMenu(bool active)
     {
@@ -482,6 +496,7 @@ public class BuildingManager : MonoBehaviour
 
         playerMovement.canMove = !active;
         playerCombat.canAttack = !active;
+        playerCombat.canBlock = !active;
 
         buildingMenu.SetActive(active);
         if(active == true)
@@ -508,6 +523,51 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
+    public void LoadBuildingMenu (int SelectedBuildMenu)
+    {
+        foreach (Transform child in SelectionGrid.transform) {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        selectedBuildMenuType.Clear();
+
+        switch(SelectedBuildMenu)
+        {
+            case 0:  
+                selectedBuildMenuType.AddRange(floorObjects);
+                break;
+            case 1:  
+                selectedBuildMenuType.AddRange(wallObjects);
+                break;
+            case 2:
+                selectedBuildMenuType.AddRange(plantObjects);
+                break;
+            case 3:
+                selectedBuildMenuType.AddRange(utilityObjects);
+                break;
+            case 4:
+                selectedBuildMenuType.AddRange(buildingObjects);
+                break;
+        }
+
+        if(selectedBuildMenuType.Count > 0)
+        {
+            for (int i = 0; i < selectedBuildMenuType.Count; i++)
+            {
+                var buildMenuItem = Instantiate (BuildItemMenuPrefab, transform.position , Quaternion.identity, SelectionGrid.transform);
+                var buildMenuItemTemplate = buildMenuItem.GetComponent<buildMenuItemTemplate>();
+                buildMenuItemTemplate.ItemTitle.text = selectedBuildMenuType[i].title;
+                buildMenuItemTemplate.ItemImage.sprite = selectedBuildMenuType[i].image;
+                int tmp_i = i;
+                SelectedBuildType tmp_type = selectedBuildMenuType[i].buildType;
+                buildMenuItem.GetComponent<Button>().onClick.AddListener(() => startBuildingButton(tmp_type, tmp_i));
+            }
+
+        }
+        else
+            Debug.Log("This List is Empty");
+    }
+    #endregion
 
     public void startBuildingButton(SelectedBuildType buildType, int buildIndex)
     {
@@ -569,50 +629,7 @@ public class BuildingManager : MonoBehaviour
 
     }
 
-    public void LoadBuildingMenu (int SelectedBuildMenu)
-    {
-        foreach (Transform child in SelectionGrid.transform) {
-            GameObject.Destroy(child.gameObject);
-        }
 
-        selectedBuildMenuType.Clear();
-
-        switch(SelectedBuildMenu)
-        {
-            case 0:  
-                selectedBuildMenuType.AddRange(floorObjects);
-                break;
-            case 1:  
-                selectedBuildMenuType.AddRange(wallObjects);
-                break;
-            case 2:
-                selectedBuildMenuType.AddRange(plantObjects);
-                break;
-            case 3:
-                selectedBuildMenuType.AddRange(utilityObjects);
-                break;
-            case 4:
-                selectedBuildMenuType.AddRange(buildingObjects);
-                break;
-        }
-
-        if(selectedBuildMenuType.Count > 0)
-        {
-            for (int i = 0; i < selectedBuildMenuType.Count; i++)
-            {
-                var buildMenuItem = Instantiate (BuildItemMenuPrefab, transform.position , Quaternion.identity, SelectionGrid.transform);
-                var buildMenuItemTemplate = buildMenuItem.GetComponent<buildMenuItemTemplate>();
-                buildMenuItemTemplate.ItemTitle.text = selectedBuildMenuType[i].title;
-                buildMenuItemTemplate.ItemImage.sprite = selectedBuildMenuType[i].image;
-                int tmp_i = i;
-                SelectedBuildType tmp_type = selectedBuildMenuType[i].buildType;
-                buildMenuItem.GetComponent<Button>().onClick.AddListener(() => startBuildingButton(tmp_type, tmp_i));
-            }
-
-        }
-        else
-            Debug.Log("This List is Empty");
-    }
 }
 
 [System.Serializable]

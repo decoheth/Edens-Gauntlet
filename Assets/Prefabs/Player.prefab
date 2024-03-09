@@ -97,6 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canAttack: 1
+  canBlock: 0
+  isAttacking: 0
+  isBlocking: 0
+  blockCooldown: 1
   weapon: {fileID: 4392719105434874901}
   combo:
   - {fileID: 11400000, guid: 06b83ef9accfd4448b3951c63da03613, type: 2}
@@ -116,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 4148617611730826579}
   walkSpeed: 10
-  runSpeed: 15
+  sprintSpeed: 14
   jumpPower: 9
   gravity: 19.62
   mouseSensitivity: 400
