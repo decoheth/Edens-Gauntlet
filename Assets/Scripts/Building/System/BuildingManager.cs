@@ -75,7 +75,7 @@ public class BuildingManager : MonoBehaviour
 
     void Awake()
     {
-        structuresParent = GameObject.Find("Structures").transform;
+        structuresParent = GameObject.Find("BuiltStructures").transform;
         uiManager = GameObject.Find("/Managers/UI Manager");
         enemyManager = GameObject.Find("/Managers/Enemy Manager");
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
