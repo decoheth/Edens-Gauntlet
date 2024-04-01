@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public void ResetPlayerPosition()
     {
         playerGO.transform.position = respawnPoint.position;
+        playerGO.transform.localEulerAngles = new Vector3(0,0,0);
     }
 
     public void GameOverState ()

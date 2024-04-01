@@ -25,7 +25,7 @@ public class WaveManager : MonoBehaviour
     //public float scalingModifer;
 
     // Managers
-    UIManager uIManager;
+    UIManager uiManager;
     BuildingManager buildingManager;
     NavMeshManager navMeshManager;
 
@@ -35,7 +35,7 @@ public class WaveManager : MonoBehaviour
 
     void Awake()
     {
-        uIManager = GameObject.Find("/Managers/UI Manager").GetComponent<UIManager>();
+        uiManager = GameObject.Find("/Managers/UI Manager").GetComponent<UIManager>();
         buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
         navMeshManager = GetComponent<NavMeshManager>();
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -78,7 +78,7 @@ public class WaveManager : MonoBehaviour
         waveActive = true;
         buildingManager.ToggleCanBuild(false);
         buildingManager.ToggleBuildingMenu(false);
-        uIManager.UpdateWaveCounter(currentWave,waveActive);
+        uiManager.UpdateWaveCounter(currentWave,waveActive);
 
         int currentWaveCost = 0; 
         var selectedEnemy = Enemies[0];
@@ -98,7 +98,7 @@ public class WaveManager : MonoBehaviour
     {
         waveActive = false;
         currentWave++;
-        uIManager.UpdateWaveCounter(currentWave,waveActive);
+        uiManager.UpdateWaveCounter(currentWave,waveActive);
         
         buildingManager.ToggleCanBuild(true);
 
@@ -106,6 +106,9 @@ public class WaveManager : MonoBehaviour
         player.Heal(1000f);
         // Heal Tree percentage
         homeTree.Heal(homeTree.maxHealth * 75);
+
+
+        StartCoroutine(uiManager.PerkSelection());
     }
     
 

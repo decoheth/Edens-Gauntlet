@@ -6,8 +6,6 @@ public class PerkManager : MonoBehaviour
 {
     
 
-    // Let's define a singleton to make accessing this simple
-    public static PerkManager instance;
 
     public List<PerkSO> allPerks;
     private List<PerkSO> activePerks = new();
@@ -15,8 +13,6 @@ public class PerkManager : MonoBehaviour
 
     // Modifiers to be referenced by other scripts
     // This will make more sense a little later
-    [HideInInspector] public float exampleModifier = 1f;
-
 
 
     void Start()
@@ -28,27 +24,20 @@ public class PerkManager : MonoBehaviour
     public void UnlockPerk(PerkSO perkToActivate)
     {
         activePerks.Add(perkToActivate);
-        AddPerkEffects(perkToActivate.code);
+        AddPerkEffects(perkToActivate);
+
+        Debug.Log("Perk Activated: " + perkToActivate.title);
     }
 
 
-    private void AddPerkEffects(int code)
-    {
-        switch (code)
-        {
-            case 0:
-                break;
-        }
-    }
 
     // Returns a list of all perks that can currently be unlocked
-    // This is going to be called by the script the player PerkSO options
     public List<PerkSO> AvailablePerks()
     {
         // Clear the list
         availablePerks = new();
         // Repopulate it
-        foreach (PerkSO PerkSO in instance.allPerks)
+        foreach (PerkSO PerkSO in allPerks)
         {
             if (IsPerkAvailable(PerkSO)) availablePerks.Add(PerkSO);
         }
@@ -72,12 +61,37 @@ public class PerkManager : MonoBehaviour
     // Pretty simply returns whether or not the player already has a given PerkSO
     public bool IsPerkActive(int code)
     {
-        foreach (PerkSO activePerk in instance.activePerks)
+        foreach (PerkSO activePerk in activePerks)
         {
             if (activePerk.code == code) return true;
         }
         return false;
     }
+
+
+    private void AddPerkEffects(PerkSO perk)
+    {
+        int func = perk.function;
+        float val1 = perk.value1;
+        float val2 = perk.value2;
+
+        switch (func)
+        {
+            case 0:
+                break;
+            case 1:
+                Debug.Log("Health increased by +" + val1);
+                break;
+            case 2:
+                Debug.Log("Tree Health increased by +" + val1);
+                break;
+            case 3:
+                Debug.Log("Shovel damage increased by +" + val1);
+                break;
+        }
+    }
+
+    
 }
 
 

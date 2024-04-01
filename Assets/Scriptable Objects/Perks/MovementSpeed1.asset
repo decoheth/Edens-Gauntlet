@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1003e88ac4139d4d949f8d0b09ff942, type: 3}
-  m_Name: HealthUpgrade3
+  m_Name: MovementSpeed1
   m_EditorClassIdentifier: 
-  title: Health Upgrade
-  code: 2
-  tier: 2
+  title: Fast Feet I
+  code: 9
+  tier: 0
   isActive: 0
   isKnown: 1
-  requiredPerks:
-  - {fileID: 11400000, guid: 087e87873eeab924c842cfb7db8e1dc5, type: 2}
-  - {fileID: 11400000, guid: a9c0dcccbb7a0a641b679dc870860992, type: 2}
-  description: 
-  icon: {fileID: 21300000, guid: f8d4343a8edd866449f6fd8e4211ec92, type: 3}
+  requiredPerks: []
+  description: Move faster
+  image: {fileID: 21300000, guid: d8a4c4f65e3ab7e408bdec81b4dcb286, type: 3}
+  function: 0
+  value1: 0
+  value2: 0

@@ -35,19 +35,6 @@ public class SaveManager: MonoBehaviour
         }   
     }
 
-    
-
-
-    public void Update ()
-    {
-        if(Input.GetKeyDown(KeyCode.O))
-            SaveGame();
-        if(Input.GetKeyDown(KeyCode.P))
-            ResetData();
-
-    }
-
-
 
     public SaveData GetData ()
     {

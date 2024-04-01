@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1003e88ac4139d4d949f8d0b09ff942, type: 3}
+  m_Name: ShovelDamage2
+  m_EditorClassIdentifier: 
+  title: Shovel Time II
+  code: 7
+  tier: 1
+  isActive: 0
+  isKnown: 1
+  requiredPerks:
+  - {fileID: 11400000, guid: f3bc4892377be2b4e9043f74006388d5, type: 2}
+  description: Hit harder with your shovel.
+  image: {fileID: 21300000, guid: 572e9dbdff6312f4696343d6f62605f2, type: 3}
+  function: 3
+  value1: 10
+  value2: 0

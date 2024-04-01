@@ -24,6 +24,10 @@ public class UIManager : MonoBehaviour
     [Header("Pause Menu")]
     [SerializeField] public GameObject pauseMenu;
 
+    [Header("Perk Selection")]
+    [SerializeField] private GameObject perkSelectionScreen;
+    [SerializeField] private GameObject perkCardParent;
+
     [Header("Game Over Menu")]
     [SerializeField] public GameObject gameOverMenu;
 
@@ -46,6 +50,7 @@ public class UIManager : MonoBehaviour
     HomeTree tree;
     WaveManager enemyManager;
     BuildingManager buildingManager;
+    PerkManager perkManager;
 
 
     void Awake()
@@ -62,6 +67,7 @@ public class UIManager : MonoBehaviour
         gameOverMenu.SetActive(false);
         playerMenu.SetActive(false);
         pauseMenu.SetActive(false);
+        perkSelectionScreen.SetActive(false);
         GameOverMenu(false);
 
         float maxHealth = player.maxHealth;
@@ -118,7 +124,7 @@ public class UIManager : MonoBehaviour
         }
 
         // Pause Menu
-        if(isCombatHUD && !playerMenu.activeInHierarchy && !isDead)
+        if(isCombatHUD && !playerMenu.activeInHierarchy && !isDead && !perkSelectionScreen.activeInHierarchy)
         {
             if(Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -129,7 +135,7 @@ public class UIManager : MonoBehaviour
 
 
         // Player Menu
-        if(Input.GetKeyDown(KeyCode.Tab) && !pauseMenu.activeInHierarchy && isCombatHUD)
+        if(Input.GetKeyDown(KeyCode.Tab) && !pauseMenu.activeInHierarchy && isCombatHUD && !perkSelectionScreen.activeInHierarchy)
         {
             TogglePlayerMenu(!playerMenu.activeInHierarchy);
         }
@@ -137,6 +143,12 @@ public class UIManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape) && playerMenu.activeInHierarchy)
         {
             TogglePlayerMenu(false);  
+        }
+
+        // TEMPORARY: Perk selection screen
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            TogglePerkSelectionScreen(!perkSelectionScreen.activeInHierarchy);
         }
 
     }
@@ -203,7 +215,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = active ? 0f : 1f;
     }
 
-        public void TogglePlayerMenu(bool active)
+    public void TogglePlayerMenu(bool active)
     {
         playerMenu.SetActive(active);
         playerMovement.canMove = !active;
@@ -214,9 +226,25 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;
 
         Time.timeScale = active ? 0f : 1f;
-        
-
-
     }
+    public void TogglePerkSelectionScreen(bool active)
+    {
+        perkSelectionScreen.SetActive(active);
+        playerMovement.canMove = !active;
+        playerCombat.canAttack = !active;
+        playerCombat.canBlock = !active;
+            
+        Cursor.visible = active;
+        Cursor.lockState = active ? CursorLockMode.Confined : CursorLockMode.Locked;
+
+        Time.timeScale = active ? 0f : 1f;
+    }
+
+    public IEnumerator PerkSelection()
+    {
+        yield return new WaitForSeconds(2f);
+        TogglePerkSelectionScreen(true);
+    }
+
     
 }
