@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 84816c6fdb86f574893394fdaa4671be, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a8a8f83293b4da24083e321fb5f9e580, type: 2}
+  m_sharedMaterial: {fileID: -8610085521493997974, guid: a8a8f83293b4da24083e321fb5f9e580, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

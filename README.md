@@ -1,7 +1,7 @@
 # Eden's Gauntlet
 
 
-Welcome to Eden's Gauntlet, a first-person tower-defense, that combines melee combat with base building and rogulike elements.
+Welcome to Eden's Gauntlet, a first-person tower-defense, that combines melee combat with base building and roguelike elements.
 
 Thrust into a post-apocalyptic world where nature has taken a dark turn, you assume the role of a botanist, wielding the power of mutated plants to fend off enemies and establish your sanctuary in a desolate landscape.
 
