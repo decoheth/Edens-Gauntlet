@@ -55,9 +55,11 @@ public class BuildingManager : MonoBehaviour
 
     [Header("Building Menu")]
     private List<BuildingSO> selectedBuildMenuType = new List<BuildingSO>();
+    private List<BuildingSO> unlockedObjects = new List<BuildingSO>();
     public GameObject BuildItemMenuPrefab;
 
 
+    // References
     private BuildingSO currentSO; 
     Transform structuresParent;
     private Player player;
@@ -529,26 +531,50 @@ public class BuildingManager : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
 
+        unlockedObjects = new ();
+
         selectedBuildMenuType.Clear();
 
         switch(SelectedBuildMenu)
         {
-            case 0:  
-                selectedBuildMenuType.AddRange(floorObjects);
+            case 0: 
+                foreach(BuildingSO obj in floorObjects)
+                {
+                    if(obj.isUnlocked)
+                        unlockedObjects.Add(obj);
+                }
                 break;
             case 1:  
-                selectedBuildMenuType.AddRange(wallObjects);
+                foreach(BuildingSO obj in wallObjects)
+                {
+                    if(obj.isUnlocked)
+                        unlockedObjects.Add(obj);
+                }
                 break;
             case 2:
-                selectedBuildMenuType.AddRange(plantObjects);
+                foreach(BuildingSO obj in plantObjects)
+                {
+                    if(obj.isUnlocked)
+                        unlockedObjects.Add(obj);
+                }
                 break;
             case 3:
-                selectedBuildMenuType.AddRange(utilityObjects);
+                foreach(BuildingSO obj in utilityObjects)
+                {
+                    if(obj.isUnlocked)
+                        unlockedObjects.Add(obj);
+                }
                 break;
             case 4:
-                selectedBuildMenuType.AddRange(buildingObjects);
+                foreach(BuildingSO obj in buildingObjects)
+                {
+                    if(obj.isUnlocked)
+                        unlockedObjects.Add(obj);
+                }
                 break;
         }
+
+        selectedBuildMenuType.AddRange(unlockedObjects);
 
         if(selectedBuildMenuType.Count > 0)
         {

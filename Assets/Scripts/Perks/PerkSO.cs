@@ -11,6 +11,7 @@ public class PerkSO : ScriptableObject
     public PerkTier tier;
     public bool isActive = false;
     public bool isKnown = true;
+    public bool hidden = false;
     public List<PerkSO> requiredPerks;
     public string description;
     public Sprite image;
