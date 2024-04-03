@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SporeSpreader
   m_EditorClassIdentifier: 
   title: Spore Spreader
-  isUnlocked: 0
+  isUnlocked: 1
   prefab: {fileID: 3310059869579434125, guid: 74d1906253e0aef4c9d22a23e3160325, type: 3}
   buildType: 4
   woodCost: 0

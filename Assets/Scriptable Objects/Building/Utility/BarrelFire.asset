@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff1c98ddab317f142aa1dd1c4470e282, type: 3}
-  m_Name: WaterTower
+  m_Name: BarrelFire
   m_EditorClassIdentifier: 
-  title: Water Tower
-  isUnlocked: 0
-  prefab: {fileID: 1626482067972224, guid: 0f09218de0063234fa95d7fe64da775b, type: 3}
+  title: Barrel Fire
+  isUnlocked: 1
+  prefab: {fileID: 8138272334867134387, guid: 386c45a71eb480644a12c5eb8362a1ea, type: 3}
   buildType: 2
-  woodCost: 0
-  metalCost: 50
+  woodCost: 5
+  metalCost: 10
   stoneCost: 0
   seedCost: 0
-  image: {fileID: 21300000, guid: 4889706bae70ed647a24a0e55b6ff11c, type: 3}
-  description: 
+  image: {fileID: 21300000, guid: 73f88eeff41eb124295dfde212545ded, type: 3}
+  description: The tried and tested method to staying warm and staying alive.

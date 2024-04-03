@@ -54,8 +54,8 @@ public class BuildingManager : MonoBehaviour
 
 
     [Header("Building Menu")]
-    private List<BuildingSO> selectedBuildMenuType = new List<BuildingSO>();
     private List<BuildingSO> unlockedObjects = new List<BuildingSO>();
+    private List<int> unlockedObjectsIndex = new List<int>();
     public GameObject BuildItemMenuPrefab;
 
 
@@ -531,9 +531,10 @@ public class BuildingManager : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
 
-        unlockedObjects = new ();
-
-        selectedBuildMenuType.Clear();
+        unlockedObjects.Clear();
+        // Index of unlocked objects in the master list
+        unlockedObjectsIndex.Clear();
+        int indx = 0;
 
         switch(SelectedBuildMenu)
         {
@@ -541,51 +542,78 @@ public class BuildingManager : MonoBehaviour
                 foreach(BuildingSO obj in floorObjects)
                 {
                     if(obj.isUnlocked)
+                    {
                         unlockedObjects.Add(obj);
+                        unlockedObjectsIndex.Add(indx);
+
+                    }
+                    indx++;
                 }
                 break;
             case 1:  
                 foreach(BuildingSO obj in wallObjects)
                 {
                     if(obj.isUnlocked)
+                    {
                         unlockedObjects.Add(obj);
+                        unlockedObjectsIndex.Add(indx);
+
+                    }
+                    indx++;
                 }
                 break;
             case 2:
                 foreach(BuildingSO obj in plantObjects)
                 {
                     if(obj.isUnlocked)
+                    {
                         unlockedObjects.Add(obj);
+                        unlockedObjectsIndex.Add(indx);
+
+                    }
+                    indx++;
                 }
                 break;
             case 3:
                 foreach(BuildingSO obj in utilityObjects)
                 {
                     if(obj.isUnlocked)
+                    {
                         unlockedObjects.Add(obj);
+                        unlockedObjectsIndex.Add(indx);
+
+                    }
+                    indx++;
                 }
                 break;
             case 4:
                 foreach(BuildingSO obj in buildingObjects)
                 {
                     if(obj.isUnlocked)
+                    {
                         unlockedObjects.Add(obj);
+                        unlockedObjectsIndex.Add(indx);
+
+                    }
+                    indx++;
                 }
                 break;
         }
 
-        selectedBuildMenuType.AddRange(unlockedObjects);
 
-        if(selectedBuildMenuType.Count > 0)
+
+        if(unlockedObjects.Count > 0)
         {
-            for (int i = 0; i < selectedBuildMenuType.Count; i++)
+            for (int i = 0; i < unlockedObjects.Count; i++)
             {
                 var buildMenuItem = Instantiate (BuildItemMenuPrefab, transform.position , Quaternion.identity, SelectionGrid.transform);
                 var buildMenuItemTemplate = buildMenuItem.GetComponent<buildMenuItemTemplate>();
-                buildMenuItemTemplate.ItemTitle.text = selectedBuildMenuType[i].title;
-                buildMenuItemTemplate.ItemImage.sprite = selectedBuildMenuType[i].image;
-                int tmp_i = i;
-                SelectedBuildType tmp_type = selectedBuildMenuType[i].buildType;
+                buildMenuItemTemplate.ItemTitle.text = unlockedObjects[i].title;
+                buildMenuItemTemplate.ItemDesc.text = unlockedObjects[i].description;
+                buildMenuItemTemplate.ItemImage.sprite = unlockedObjects[i].image;
+                buildMenuItemTemplate.ItemCost.text = "Lots of Gold";
+                int tmp_i = unlockedObjectsIndex[i];
+                SelectedBuildType tmp_type = unlockedObjects[i].buildType;
                 buildMenuItem.GetComponent<Button>().onClick.AddListener(() => startBuildingButton(tmp_type, tmp_i));
             }
 

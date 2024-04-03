@@ -445,7 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   quality:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   enabled:
     m_OverrideState: 1
@@ -481,19 +481,19 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 60
   enableVolumetricFog:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 0
   albedo:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   globalLightProbeDimmer:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   depthExtent:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 64
   denoisingMode:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 2
   anisotropy:
     m_OverrideState: 0
@@ -502,7 +502,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0.75
   m_FogControlMode:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   screenResolutionPercentage:
     m_OverrideState: 0
@@ -511,10 +511,10 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 64
   m_VolumetricFogBudget:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.33
   m_ResolutionDepthRatio:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.666
   directionalLightsOnly:
     m_OverrideState: 0
