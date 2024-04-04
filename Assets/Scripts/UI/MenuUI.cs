@@ -42,7 +42,7 @@ public class MenuUI : MonoBehaviour
     public void ExitGame ()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false; // Unity Editor Only
+        //UnityEditor.EditorApplication.isPlaying = false; // Unity Editor Only
     }
     
 

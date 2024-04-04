@@ -60,7 +60,7 @@ public class SaveManager: MonoBehaviour
     
     private void SetPaths()
     {
-        path = Application.persistentDataPath + "/savaData.json";
+        path = Application.persistentDataPath + "/runData.json";
     }
 
 

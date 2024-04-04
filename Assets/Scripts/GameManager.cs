@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public Transform respawnPoint;
     void Awake()
     {
-        Application.targetFrameRate = targetFps;
+        //Application.targetFrameRate = targetFps;
 
         uiManager = GameObject.Find("/Managers/UI Manager").GetComponent<UIManager>();
         buildingManager = GameObject.Find("/Managers/Building Manager").GetComponent<BuildingManager>();
@@ -52,6 +52,6 @@ public class GameManager : MonoBehaviour
     public void ExitGame ()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false; // Unity Editor Only
+        //UnityEditor.EditorApplication.isPlaying = false; // Unity Editor Only
     }
 }
